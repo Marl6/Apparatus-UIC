@@ -1,4 +1,4 @@
-<x-default-layout bodyClass="g-sidenav-show  bg-gray-200">
+@extends('layouts.default')
     <x-navbars.sidebar activePage='dashboard'></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
@@ -817,4 +817,4 @@
 
     </script>
     @endpush
-</x-default-layout>
+

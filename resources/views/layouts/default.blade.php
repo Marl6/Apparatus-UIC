@@ -24,7 +24,10 @@
     </head>
     <body class="">
 
-        {{ $slot }}
+        <main>
+            @yield('content')
+
+        </main>
 
         <script src="{{ asset('materialUI/material/assets/js/core/popper.min.js') }}"></script>
         <script src="{{ asset('materialUI/material/assets/js/core/bootstrap.min.js') }}"></script>
