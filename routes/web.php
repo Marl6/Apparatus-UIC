@@ -14,18 +14,21 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('dashboard.index');})->name('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/apparatus', function () {
     return view('apparatus');
 })->middleware(['auth', 'verified'])->name('apparatus');
 
+Route::get('/user-management', function () {
+    return view('user-management');
+})->middleware(['auth', 'verified'])->name('user-management');
 
 
 Route::middleware('auth')->group(function () {
