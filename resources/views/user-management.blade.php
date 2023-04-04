@@ -23,7 +23,7 @@
                         <form method='POST' action='{{ route('addUser')}}'>
                             @csrf
                             <div class="row">
-                                
+
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control border border-2 p-2" value=''>
@@ -38,7 +38,7 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">Password</label>
                                     <input type="password" name="password" class="form-control border border-2 p-2" value=''>
