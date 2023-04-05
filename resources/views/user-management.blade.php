@@ -23,9 +23,9 @@
                         <form method='POST' action='{{ route('addUser')}}'>
                             @csrf
                             <div class="row">
-                                
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">No</label>
+
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control border border-2 p-2" value=''>
                                     @error('name')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
@@ -39,59 +39,10 @@
                                     @enderror
                                 </div>
                                 
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Subject_Group_No</label>
-                                    <input type="subject_group_No" name="subject_group_no" class="form-control border border-2 p-2" value=''>
-                                    @error('subject_group_no')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">lab_in_charge</label>
-                                    <input type="text" name="lab_in_charge" class="form-control border border-2 p-2" value=''>
-                                    @error('name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Course_yr_section</label>
-                                    <input type="text" name="course_yr_section" class="form-control border border-2 p-2" value=''>
-                                    @error('name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Date</label>
-                                    <input type="date" name="Date" class="form-control border border-2 p-2" value=''>
-                                    @error('name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Or_no</label>
-                                    <input type="text" name="Or_no" class="form-control border border-2 p-2" value=''>
-                                    @error('name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                                </div>
-                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">Quantity</label>
-                                    <input type="text" name="quantity" class="form-control border border-2 p-2" value=''>
-                                    @error('name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Item</label>
-                                    <input type="text" name="item" class="form-control border border-2 p-2" value=''>
-                                    @error('name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Amount</label>
-                                    <input type="text" name="amount" class="form-control border border-2 p-2" value=''>
-                                    @error('name')
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control border border-2 p-2" value=''>
+                                    @error('password')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                 </div>
