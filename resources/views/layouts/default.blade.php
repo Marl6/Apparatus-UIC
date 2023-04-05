@@ -21,6 +21,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
         <!-- CSS Files -->
         <link id="pagestyle" href="{{ asset('materialUI/assets/css/material-dashboard.css') }}" rel="stylesheet" />
+
+        @yield('head-script')
     </head>
     <body class="">
 
@@ -48,5 +50,7 @@
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="{{ asset('matereialUI/material/assets/js/material-dashboard.min.js') }}"></script>
+        @yield('scripts')
+
     </body>
 </html>

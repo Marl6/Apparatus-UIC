@@ -27,11 +27,13 @@ Route::get('/apparatus', function () {
     return view('apparatus');
 })->middleware(['auth', 'verified'])->name('apparatus');
 
-Route::get('/user-management', function () {
-    return view('user-management');
-})->middleware(['auth', 'verified'])->name('user-management');
+Route::get('/user-management',[UserManagementController::class,'index'])->middleware(['auth', 'verified'])->name('user-management');
 
-Route::POST('/addUser', [UserManagementController::class, 'addUser'])->name('addUser');
+// Route::get('/user-management', function () {
+//     return view('user-management');
+// })->middleware(['auth', 'verified'])->name('user-management');
+
+Route::post('/addUser', [UserManagementController::class, 'addUser'])->name('addUser');
 
 
 Route::middleware('auth')->group(function () {
