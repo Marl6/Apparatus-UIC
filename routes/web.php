@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\ApparatusController;
+use App\Http\Controllers\BreakagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +30,17 @@ Route::get('/apparatus', function () {
     return view('apparatus');
 })->middleware(['auth', 'verified'])->name('apparatus');
 
+Route::get('/Breakages', function () {
+    return view('breakages');
+})->middleware(['auth', 'verified'])->name('Breakages');
+
 Route::get('/user-management', function () {
     return view('user-management');
 })->middleware(['auth', 'verified'])->name('user-management');
 
 Route::POST('/addUser', [UserManagementController::class, 'addUser'])->name('addUser');
 Route::POST('/addApparatus', [ApparatusController::class, 'addApparatus'])->name('addApparatus');
+Route::POST('/addBreakages', [BreakagesController::class, 'addBreakages'])->name('addBreakages');
 
 
 Route::middleware('auth')->group(function () {
