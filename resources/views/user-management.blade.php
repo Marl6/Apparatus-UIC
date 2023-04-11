@@ -31,14 +31,14 @@
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                                 </div>
-                                <div class="mb-3 col-md-12">
-                                    <label class="form-label">Email address</label>
-                                    <input type="email" name="email" class="form-control border border-2 p-2" value=''>
-                                    @error('email')
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" name="name" class="form-control border border-2 p-2" value=''>
+                                    @error('name')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                 </div>
-
+                                
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">Password</label>
                                     <input type="password" name="password" class="form-control border border-2 p-2" value=''>
@@ -46,6 +46,34 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                 </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Campus</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          College-Main
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                          College-Annex
+                                        </label>
+                                        ` <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                              Grade-School
+                                            </label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                              High-School
+                                            </label>
+                                      </div>                                              
+                                </div>
+                                  
+                                  
                             </div>
                     </div>
                     <div class="modal-footer">
