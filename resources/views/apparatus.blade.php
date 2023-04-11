@@ -16,28 +16,44 @@
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h1 class="modal-title fs-4" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-4" id="exampleModalLabel">Apparatus</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method='POST' action='{{ route('addUser')}}'>
+                        <form method='POST' action='{{ route('addApparatus')}}'>
                             @csrf
                             <div class="row">
 
                                 <div class="row">
 
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label">Subject address</label>
-                                        <input type="text" name="name" class="form-control border border-2 p-2" value='{{ old('name', auth()->user()->name) }}'>
-                                        @error('name')
+                                        <label class="form-label">Subject</label>
+                                        <input type="text" name="subject" class="form-control border border-2 p-2" value='{{ old('subject', auth()->user()->subject) }}'>
+                                        @error('subject')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                     </div>
 
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label">Course&Yr/Section</label>
-                                        <input type="text" name="name" class="form-control border border-2 p-2" value='{{ old('name', auth()->user()->name) }}'>
-                                        @error('name')
+                                        <label class="form-label">Course</label>
+                                        <input type="text" name="course" class="form-control border border-2 p-2" value='{{ old('course', auth()->user()->course) }}'>
+                                        @error('course')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+                                    </div>
+
+                                    <div class="mb-3 col-md-6">
+                                      <label class="form-label">Year</label>
+                                      <input type="text" name="Year" class="form-control border border-2 p-2" value='{{ old('Year', auth()->user()->Year) }}'>
+                                      @error('Year')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+                                    </div>
+
+                                    <div class="mb-3 col-md-6">
+                                      <label class="form-label">Section</label>
+                                      <input type="text" name="section" class="form-control border border-2 p-2" value='{{ old('section', auth()->user()->section) }}'>
+                                      @error('section')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                     </div>
@@ -52,15 +68,15 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Date to be used</label>
-                                        <input type="date" name="date" class="form-control border border-2 p-2" value='{{ old('Datetobeused', auth()->user()->Datetobeused) }}'>
+                                        <input type="date" name="Datetobeused" class="form-control border border-2 p-2" value='{{ old('Datetobeused', auth()->user()->Datetobeused) }}'>
                                         @error('Datetobeused')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Teacher</label>
-                                        <input type="text" name="name" class="form-control border border-2 p-2" value='{{ old('name', auth()->user()->name) }}'>
-                                        @error('name')
+                                        <input type="text" name="teacher" class="form-control border border-2 p-2" value='{{ old('teacher', auth()->user()->teacher) }}'>
+                                        @error('teacher')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
                                     </div>

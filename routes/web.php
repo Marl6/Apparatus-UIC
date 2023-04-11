@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\ApparatusController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +34,7 @@ Route::get('/user-management', function () {
 })->middleware(['auth', 'verified'])->name('user-management');
 
 Route::POST('/addUser', [UserManagementController::class, 'addUser'])->name('addUser');
+Route::POST('/addApparatus', [ApparatusController::class, 'addApparatus'])->name('addApparatus');
 
 
 Route::middleware('auth')->group(function () {
