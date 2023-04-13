@@ -8,17 +8,79 @@
         <div class = "container-fluid py-5">
             <div class = "row">
                 <div class = "me-3 my-3 text-end">
-                    <a class="btn bg-gradient-dark mb-0" href=""data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a class="btn bg-gradient-dark mb-0" href=""data-bs-toggle="modal" data-bs-target="#AddNewApparatusModal">
                         <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add new Item</a>
                 </div>
             </div>
 						<div class = "row">
 							
 							<table>
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Apparatus Description</th>
+										<th>Status</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									@if ($array_value['apparatus_list'])
+										@if ($array_value['apparatus_list'][0]->apparatus_id > 0)
+											@foreach ($array_value['apparatus_list'] as $result)
+												<tr>
+													<td class="align-center">{{ $result->row_num; }}</td>
+													<td class="align-left">{{ $result->label; }}</td>
+													<td class="align-center">{{ $result->statuscode_label; }}</td>
+													<td class="align-center">
+														Update | Delete
+													</td>
+												</tr>
+											@endforeach
+
+										@endif
+									@endif
+								</tbody>
+
 							</table>
 					</div>
+
+					<div class="modal fade" id="AddNewApparatusModal" tabindex="-1" aria-labelledby="AddNewApparatusModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-4" id="AddNewApparatusModalLabel">Apparatus</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<form method='POST' action='/save_new_apparatus'>
+								@csrf
+									<div class="modal-body">
+										
+											<div class="row">
+												<div class="row">
+
+													<div class="mb-3 col-md-12">
+														<label class="form-label">Apparatus Name</label>
+														<input type="text" id="apparatus_name" name="apparatus_name" class="form-control border border-2 p-2">
+														@error('subject')
+														<p class='text-danger inputerror'>{{ $message }} </p>
+														@enderror
+													</div>
+													
+												</div>
+											</div>
+									</div>
+										
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Save changes</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -134,7 +196,7 @@
                     </div>
                 </form>
                 </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </main>

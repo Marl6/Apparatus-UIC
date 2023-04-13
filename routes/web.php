@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::get('list',[UserList::class,'show']);
 
-    
+
 Route::get('/apparatus', function () {
     return view('apparatus');
 })->middleware(['auth', 'verified'])->name('apparatus');
@@ -47,6 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/apparatus_list', [ApparatusController::class, 'apparatus_list']);
+    Route::post('/save_new_apparatus', [ApparatusController::class, 'save_new_apparatus']);
 });
 
 require __DIR__.'/auth.php';
