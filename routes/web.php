@@ -3,7 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserManagementController; 
+use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\ApparatusController;
+use App\Http\Controllers\BreakagesController;
+use App\Http\Controllers\UserList;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,25 +18,29 @@ use App\Http\Controllers\UserManagementController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');})->name('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('list',[UserList::class,'show']);
+
+    
 Route::get('/apparatus', function () {
     return view('apparatus');
 })->middleware(['auth', 'verified'])->name('apparatus');
 
+Route::get('/Breakages', function () {
+    return view('Breakages');
+})->middleware(['auth', 'verified'])->name('Breakages');
+
 Route::get('/user-management',[UserManagementController::class,'index'])->middleware(['auth', 'verified'])->name('user-management');
 
-// Route::get('/user-management', function () {
-//     return view('user-management');
-// })->middleware(['auth', 'verified'])->name('user-management');
 
 Route::post('/addUser', [UserManagementController::class, 'addUser'])->name('addUser');
+Route::post('/addApparatus', [ApparatusController::class, 'addApparatus'])->name('addApparatus');
+Route::post('/addBreakages', [BreakagesController::class, 'addBreakages'])->name('addBreakages');
+
 
 
 Route::middleware('auth')->group(function () {
