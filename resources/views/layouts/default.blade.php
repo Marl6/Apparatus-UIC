@@ -7,7 +7,7 @@
         <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('materialUI/material/assets/img/apple-icon.png') }}">
         <link rel="icon" type="image/png" href="{{ asset('materialUI/material/assets/img/favicon.png') }}">
         <title>
-            Material Dashboard 2 by Creative Tim & UPDIVISION
+            Chemicals
         </title>
         <!--     Fonts and icons     -->
         <link rel="stylesheet" type="text/css"
@@ -21,12 +21,12 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
         <!-- CSS Files -->
         <link id="pagestyle" href="{{ asset('materialUI/assets/css/material-dashboard.css') }}" rel="stylesheet" />
+        @yield('head-script')
     </head>
     <body class="">
 
         <main>
             @yield('content')
-
         </main>
 
         <script src="{{ asset('materialUI/material/assets/js/core/popper.min.js') }}"></script>
@@ -48,5 +48,6 @@
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="{{ asset('matereialUI/material/assets/js/material-dashboard.min.js') }}"></script>
+        @yield('body-script')
     </body>
 </html>

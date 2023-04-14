@@ -61,7 +61,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Date</label>
-                                        <input type="date" name="date" class="form-control border border-2 p-2" value='{{ old('date', auth()->user()->date) }}'>
+                                        <input type="date" name="datetime_added" class="form-control border border-2 p-2" value='{{ old('datetime_added', auth()->user()->datetime_added) }}'>
                                         @error('date')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -69,7 +69,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Status Code</label>
-                                        <input type="date" name="code" class="form-control border border-2 p-2" value='{{ old('code', auth()->user()->code) }}'>
+                                        <input type="text" name="code" class="form-control border border-2 p-2" value='{{ old('code', auth()->user()->code) }}'>
                                         @error('code')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
