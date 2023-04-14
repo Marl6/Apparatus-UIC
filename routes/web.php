@@ -7,6 +7,7 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\ApparatusController;
 use App\Http\Controllers\BreakagesController;
 use App\Http\Controllers\ChemicalsController;
+use App\Http\Controllers\UserList;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +20,13 @@ use App\Http\Controllers\ChemicalsController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+    return view('dashboard.index');})->name('dashboard');
+
+Route::get('list',[UserList::class,'show']);
+
 
 Route::get('/apparatus', function () {
     return view('apparatus');
@@ -36,22 +36,29 @@ Route::get('/Breakages', function () {
     return view('Breakages');
 })->middleware(['auth', 'verified'])->name('Breakages');
 
-Route::get('/chemicals', [ChemicalsController::class, 'index'])->name('chemicals');
+Route::get('/user-management',[UserManagementController::class,'index'])->middleware(['auth', 'verified'])->name('user-management');
 
-Route::get('/user-management', function () {
-    return view('user-management');
-})->middleware(['auth', 'verified'])->name('user-management');
 
-Route::POST('/addUser', [UserManagementController::class, 'addUser'])->name('addUser');
-Route::POST('/addApparatus', [ApparatusController::class, 'addApparatus'])->name('addApparatus');
-Route::POST('/addBreakages', [BreakagesController::class, 'addBreakages'])->name('addBreakages');
-Route::POST('/addChemicals', [ChemicalsController::class, 'addChemicals'])->name('addChemicals');
+Route::post('/addUser', [UserManagementController::class, 'addUser'])->name('addUser');
+Route::post('/addApparatus', [ApparatusController::class, 'addApparatus'])->name('addApparatus');
+Route::post('/addBreakages', [BreakagesController::class, 'addBreakages'])->name('addBreakages');
+
 
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/apparatus_list', [ApparatusController::class, 'apparatus_list']);
+    Route::post('/save_new_apparatus', [ApparatusController::class, 'save_new_apparatus']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('/addChemicals',[ChemicalsController::class, 'addChemicals'])->name('addChemicals');
+    Route::get('/chemicals',[ChemicalsController::class, 'index'])->name('chemicals');
 });
 
 require __DIR__.'/auth.php';

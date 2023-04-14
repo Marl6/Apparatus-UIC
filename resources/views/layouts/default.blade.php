@@ -49,5 +49,6 @@
         <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="{{ asset('matereialUI/material/assets/js/material-dashboard.min.js') }}"></script>
         @yield('body-script')
+
     </body>
 </html>
