@@ -51,14 +51,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/apparatus_list', [ApparatusController::class, 'apparatus_list']);
-    Route::post('/save_new_apparatus', [ApparatusController::class, 'save_new_apparatus']);
-});
+// APPARATUS CONTROLLER
 
+
+// CHEMICALS GROUP
 Route::middleware('auth')->group(function () {
     Route::post('/addChemicals',[ChemicalsController::class, 'addChemicals'])->name('addChemicals');
     Route::get('/chemicals',[ChemicalsController::class, 'index'])->name('chemicals');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::post('/addApparatus',[ApparatusController::class, 'addApparatus'])->name('addApparatus');
+    Route::get('/apparatus',[ApparatusController::class, 'index'])->name('apparatus');
+});
+
+Route::middleware('auth')->group(function () {
+    // Route::post('/addBreakages',[BreakagesController::class, 'addBreakages'])->name('addBreakages');
+    Route::get('/Breakages',[BreakagesController::class, 'index'])->name('Breakages');
+});
+
 
 require __DIR__.'/auth.php';

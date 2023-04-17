@@ -30,14 +30,13 @@ class ChemicalsController extends Controller
             $chemicals = Chemicals::get()->all();
                 return Datatables::of($chemicals)
                     ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                        $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                        return $actionBtn;
+                    ->addColumn('action', function($chemicals){
+                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$chemicals->id.'" data-original-title="Edit" class="editBtn btn bTN-SUCCESS mb-0"><i class="bi bi-pencil-square">EDIT</i></a> ';
+                            return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
         return view('chemicals');
-
     }
 }

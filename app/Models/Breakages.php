@@ -11,5 +11,19 @@ class Breakages extends Model
     use HasFactory;
 
     protected $table ="breakages";
+    protected $primaryKey = "id";
+
+    protected $fillable = [
+        'group_no',
+        'requisition_id',
+        'quantity',
+        'amount',
+        'datetime_added',
+        'datetime_update',
+        'statuscode'
+
+
+    ];
+
 
 }
