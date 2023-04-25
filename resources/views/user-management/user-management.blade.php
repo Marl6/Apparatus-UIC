@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('head-script')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">  
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@
                             <form method='POST' action='{{ route('addUser')}}'>
                                 @csrf
                                 <div class="row">
-                                    
+
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Name</label>
                                         <input type="text" name="name" class="form-control border border-2 p-2" value=''>
@@ -44,7 +44,7 @@
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
                                     </div>
-                                    
+
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Password</label>
                                         <input type="password" name="password" class="form-control border border-2 p-2" value=''>
@@ -59,7 +59,7 @@
                         <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
 
-                        
+
 
                     </form>
                     </div>
@@ -69,31 +69,32 @@
                 {{-- table --}}
                 <div class="card-body px-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0 data-table">
+                        <table class="table align-items-center mb-0 " id="data-table">
                             <thead>
                                 <tr>
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         ID
                                     </th>
-                                    
+
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         NAME</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         EMAIL</th>
-                                    
+
                                     <th class="text-secondary opacity-7">ACTION</th>
                                 </tr>
                             </thead>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
 
 
                 {{-- Edit modal --}}
-                
+
                 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
@@ -105,7 +106,7 @@
                             <form method='' action=''>
                                 @csrf
                                 <div class="row">
-                                    
+
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Name</label>
                                         <input type="text" name="name" class="form-control border border-2 p-2" value=''>
@@ -135,7 +136,7 @@
                         <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
 
-                        
+
 
                     </form>
                     </div>
@@ -143,7 +144,7 @@
                 </div>
                 {{-- testing --}}
 
-            
+
 
 
 
@@ -156,8 +157,8 @@
 @section('scripts')
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js" integrity="sha512-6DC1eE3AWg1bgitkoaRM1lhY98PxbMIbhgYCGV107aZlyzzvaWCW1nJW2vDuYQm06hXrW0As6OGKcIaAVWnHJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    
+
+
 
     <script>
         $(document).ready(function(){
@@ -168,7 +169,7 @@
                 }
             });
 
-            var table = $('.data-table').DataTable({
+            $('#data-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('user-management')}}",

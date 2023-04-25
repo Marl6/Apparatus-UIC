@@ -12,6 +12,8 @@ class Chemicals extends Model
     protected $table ="chemicals";
     protected $primaryKey = "id";
 
+
+
     protected $fillable = [
         'date_requested',
         'date_to_be_used',
@@ -20,6 +22,4 @@ class Chemicals extends Model
         'requested_by',
         'prepared_by'
     ];
-
-    
 }

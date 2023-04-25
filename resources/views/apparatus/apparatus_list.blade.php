@@ -3,7 +3,7 @@
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
 
         <x-navbars.navs.auth titlePage="apparatus"></x-navbars.navs.auth>
-        
+
 
         <div class = "container-fluid py-5">
             <div class = "row">
@@ -13,7 +13,7 @@
                 </div>
             </div>
 						<div class = "row">
-							
+
 							<table>
 								<thead>
 									<tr>
@@ -54,7 +54,7 @@
 								<form method='POST' action='/save_new_apparatus'>
 								@csrf
 									<div class="modal-body">
-										
+
 											<div class="row">
 												<div class="row">
 
@@ -65,11 +65,11 @@
 														<p class='text-danger inputerror'>{{ $message }} </p>
 														@enderror
 													</div>
-													
+
 												</div>
 											</div>
 									</div>
-										
+
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 										<button type="submit" class="btn btn-primary">Save changes</button>
@@ -197,7 +197,7 @@
                 </form>
                 </div>
                 </div> --}}
-            </div>
+            {{-- </div>
         </div>
     </main>
     <x-plugins></x-plugins>
@@ -454,7 +454,7 @@
     </script>
     @endpush
 
-
+ --}}
 
 
 

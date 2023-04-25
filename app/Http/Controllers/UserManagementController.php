@@ -9,7 +9,7 @@ class UserManagementController extends Controller
 {
     public function index(Request $request)
     {
-        
+
         if($request->ajax()){
 
             $user = User::latest()->get();
@@ -27,7 +27,7 @@ class UserManagementController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('user-management');
+        return view('user-management.user-management');
     }
 
     public function addUser(Request $request)
@@ -40,9 +40,9 @@ class UserManagementController extends Controller
         $user->save();
 
         return redirect()->route('dashboard');
-        
+
     }
-    
+
     public function getUser(Request $request)
     {
         $users = User::get()->all();
@@ -51,8 +51,8 @@ class UserManagementController extends Controller
 
     public function edit(Request $request)
     {
-       
-       
+
+
     }
 
 }

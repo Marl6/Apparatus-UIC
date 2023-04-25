@@ -28,6 +28,4 @@ class Apparatus extends Model
         'remarks'
 
     ];
-
-
 }
