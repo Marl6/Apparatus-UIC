@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Yajra\DataTables\Facades\Datatables;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -9,25 +10,19 @@ class UserManagementController extends Controller
 {
     public function index(Request $request)
     {
-
         if($request->ajax()){
-
-            $user = User::latest()->get();
-
+            $user = User::get()->all();
             return Datatables::of($user)
-                    ->addIndexColumn()
-                    // ->addColumn('action', function($row){
-                    //     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="btn editbtn btn-sm"><span class="badge bg-success">Edit</a  > ';
-                    //     $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Delete" class="btn deletebtn btn-sm"><span class="badge bg-danger">Delete</a  > ';
-                    //         return $btn;
-                    // })
-                    ->editColumn('id',function($user){
-                        return 'dasdasd';
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                ->addIndexColumn()
+                ->addColumn('action', function($user){
+                    $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $user->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .
+                           '<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $user->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
-        return view('user-management.user-management');
+        return view('user-management.user-management-list');
     }
 
     public function addUser(Request $request)
@@ -39,7 +34,7 @@ class UserManagementController extends Controller
         $user->password = $request->password;
         $user->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('user-management');
 
     }
 

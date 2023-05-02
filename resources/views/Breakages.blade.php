@@ -2,7 +2,7 @@
 
     @section('head-script')
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
+        {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
@@ -10,7 +10,18 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
         <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.min.css')}}">
-        <script type="text/javascript" src="{{asset('sweetalert2/dist/sweetalert2.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('sweetalert2/dist/sweetalert2.min.js')}}"></script> --}}
+
+        <link href="{{ asset('twitter-bootstrap5/5.0.1/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('datatables/1.11.4/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+        <script src="{{ asset('jquery/jquery-3.5.1.js') }}"></script>
+        <script src="{{ asset('jquery/jquery-validate/1.19.0/jquery.validate.js') }}"></script>
+        <script src="{{ asset('datatables/1.11.4/js/jquery.dataTables.min.js') }}"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
+        <script src="{{ asset('bootstrap5/5.0.2/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('datatables/1.11.4/js/dataTables.bootstrap5.min.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('sweetalert2/dist/sweetalert2.min.css') }}">
+        <script type="text/javascript" src="{{ asset('sweetalert2/dist/sweetalert2.min.js') }}"></script>
     @endsection
 
     @section('content')
@@ -39,13 +50,12 @@
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
                                             <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-1">group_no</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">requisition_id</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">requisition_id</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">amount</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">datetime_added</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">datetime_update</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">statuscode</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">amount</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">datetime_added</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">statuscode</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Action</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -71,7 +81,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Group No</label>
-                                                <input type="number" name="group_no" class="form-control border border-2 p-2" value='{{ old('group_no', auth()->user()->group_no) }}'>
+                                                <input type="number" name="group_no" class="form-control border border-2 p-2" required>
                                                 @error('group_no')
                                             <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror
@@ -79,7 +89,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Requisition ID</label>
-                                                <input type="number" name="requisition_id" class="form-control border border-2 p-2" value='{{ old('requisition_id', auth()->user()->requisition_id) }}'>
+                                                <input type="number" name="requisition_id" class="form-control border border-2 p-2" required>
                                                 @error('requisition_id')
                                             <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror
@@ -88,7 +98,7 @@
 
                                             <div class="mb-3 col-md-6">
                                             <label class="form-label">Quantity</label>
-                                            <input type="number" name="quantity" class="form-control border border-2 p-2" value='{{ old('quantity', auth()->user()->quantity) }}'>
+                                            <input type="number" name="quantity" class="form-control border border-2 p-2"  required>
                                             @error('quantity')
                                             <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror
@@ -96,7 +106,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Amount</label>
-                                                <input type="text" name="amount" class="form-control border border-2 p-2" value='{{ old('amount', auth()->user()->amount) }}'>
+                                                <input type="text" name="amount" class="form-control border border-2 p-2" required>
                                                 @error('amount')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -104,7 +114,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Date</label>
-                                                <input type="date" name="datetime_added" class="form-control border border-2 p-2" value='{{ old('datetime_added', auth()->user()->datetime_added) }}'>
+                                                <input type="date" name="datetime_added" class="form-control border border-2 p-2" required>
                                                 @error('date')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -112,7 +122,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Status Code</label>
-                                                <input type="text" name="statuscode" class="form-control border border-2 p-2" value='{{ old('statuscode', auth()->user()->statuscode) }}'>
+                                                <input type="text" name="statuscode" class="form-control border border-2 p-2"  required>
                                                 @error('statuscode')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -147,7 +157,7 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Group No</label>
-                                                    <input type="number" name="group_no" class="form-control border border-2 p-2"  id="group_no_edit">
+                                                    <input type="number" name="group_no" class="form-control border border-2 p-2"  id="group_no_edit" required>
                                                     @error('group_no')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
@@ -155,7 +165,7 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Requisition ID</label>
-                                                    <input type="number" name="requisition_id" class="form-control border border-2 p-2"  id="requisition_id_edit">
+                                                    <input type="number" name="requisition_id" class="form-control border border-2 p-2"  id="requisition_id_edit" required>
                                                     @error('requisition_id')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
@@ -164,7 +174,7 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Quantity</label>
-                                                    <input type="number" name="quantity" class="form-control border border-2 p-2"  id="quantity_edit">
+                                                    <input type="number" name="quantity" class="form-control border border-2 p-2"  id="quantity_edit" required>
                                                     @error('quantity')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
@@ -172,7 +182,7 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Amount</label>
-                                                    <input type="text" name="amount" class="form-control border border-2 p-2"  id="amount_edit">
+                                                    <input type="text" name="amount" class="form-control border border-2 p-2"  id="amount_edit" required>
                                                     @error('amount')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
@@ -180,7 +190,7 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Date</label>
-                                                    <input type="date" name="datetime_added" class="form-control border border-2 p-2"  id="datetime_added_edit">
+                                                    <input type="date" name="datetime_added" class="form-control border border-2 p-2"  id="datetime_added_edit" required>
                                                     @error('date')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
@@ -188,7 +198,7 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Status Code</label>
-                                                    <input type="text" name="statuscode" class="form-control border border-2 p-2"  id="statuscode_edit">
+                                                    <input type="text" name="statuscode" class="form-control border border-2 p-2"  id="statuscode_edit" required>
                                                     @error('statuscode')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
@@ -225,7 +235,6 @@
                             {data: 'quantity', name: 'quantity'},
                             {data: 'amount', name: 'amount'},
                             {data: 'datetime_added', name: 'datetime_added'},
-                            {data: 'datetime_update', name: 'datetime_update'},
                             {data: 'statuscode', name: 'statuscode'},
                             {data: 'action', name: 'action', orderable: false, searchable: false},
                         ]

@@ -21,6 +21,8 @@ class ChemicalsController extends Controller
             $chemicals->prepared_by = $request->prepared_by;
             $chemicals->save();
 
+            return view('chemicals.chemicals-list');
+
             return response()->json([
                 "message" => "You successfully added the chemicals.",
                 "success" => true
@@ -90,8 +92,6 @@ class ChemicalsController extends Controller
             'quantity' => $request->input('quantity'),
             'requested_by' => $request->input('requested_by'),
             'prepared_by' => $request->input('prepared_by'),
-            // 'urls'=> $request->input('urls'),
-            // 'categorie_id'=> $request->input('categorie_id')
           ]);
           return redirect()->back();
     }

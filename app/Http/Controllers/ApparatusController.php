@@ -92,7 +92,7 @@ class ApparatusController extends Controller
             'course' => $request->input('course'),
             'year' => $request->input('year'),
             'section' => $request->input('section'),
-            'date_to_be_used ' => $request->input('date_to_be_used '),
+            'date_to_be_used' => $request->input('date_to_be_used'),
             'group_no' => $request->input('group_no'),
             'teacher' => $request->input('teacher'),
             'experiment_no' => $request->input('experiment_no'),
@@ -100,8 +100,6 @@ class ApparatusController extends Controller
             'items' => $request->input('items'),
             'quantity' => $request->input('quantity'),
             'remarks' => $request->input('remarks'),
-            // 'urls'=> $request->input('urls'),
-            // 'categorie_id'=> $request->input('categorie_id')
           ]);
           return redirect()->back();
     }

@@ -78,8 +78,6 @@ class BreakagesController extends Controller
             'datetime_added' => $request->input('datetime_added'),
             'datetime_update' => $request->input('datetime_update'),
             'statuscode' => $request->input('statuscode'),
-            // 'urls'=> $request->input('urls'),
-            // 'categorie_id'=> $request->input('categorie_id')
           ]);
           return redirect()->back();
         }

@@ -2,15 +2,15 @@
 
         @section('head-script')
             <meta name="csrf-token" content="{{ csrf_token() }}">
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
-            <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-            <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-            <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
-            <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.min.css')}}">
-            <script type="text/javascript" src="{{asset('sweetalert2/dist/sweetalert2.min.js')}}"></script>
+            <link href="{{ asset('twitter-bootstrap5/5.0.1/css/bootstrap.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('datatables/1.11.4/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+            <script src="{{ asset('jquery/jquery-3.5.1.js') }}"></script>
+            <script src="{{ asset('jquery/jquery-validate/1.19.0/jquery.validate.js') }}"></script>
+            <script src="{{ asset('datatables/1.11.4/js/jquery.dataTables.min.js') }}"></script>
+            <script src="{{ asset('bootstrap5/5.0.2/js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('datatables/1.11.4/js/dataTables.bootstrap5.min.js') }}"></script>
+            <link rel="stylesheet" href="{{ asset('sweetalert2/dist/sweetalert2.min.css') }}">
+            <script type="text/javascript" src="{{ asset('sweetalert2/dist/sweetalert2.min.js') }}"></script>
         @endsection
 
     @section('content')
@@ -24,11 +24,11 @@
                         <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Item</a>
                 </div>
 
-                <div class="card-body px-0 pb-2">
+                {{-- <div class="card-body px-0 pb-2">
                     <div class="table-responsive p-0">
 
                     </div>
-                </div>
+                </div> --}}
                 <!-- TABLE -->
                 <div class="col-lg-25 col-md-30 mb-md-5 mb-1">
                     <div class="card">
@@ -37,11 +37,11 @@
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">subject</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">course</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">year</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">subject</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">course</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">year</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">section</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">date_to_be_used </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">date_to_be_used</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">group_no</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">teacher</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">experiment_no</th>
@@ -74,7 +74,7 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Subject</label>
-                                                <input type="text" name="subject" class="form-control border border-2 p-2" value='{{ old('subject', auth()->user()->subject) }}'>
+                                                <input type="text" name="subject" class="form-control border border-2 p-2" required>
                                                 @error('subject')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -82,7 +82,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Course</label>
-                                                <input type="text" name="course" class="form-control border border-2 p-2" value='{{ old('course', auth()->user()->course) }}'>
+                                                <input type="text" name="course" class="form-control border border-2 p-2"  required>
                                                 @error('course')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -90,7 +90,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Year </label>
-                                                <input type="text" name="year" class="form-control border border-2 p-2" value='{{ old('year', auth()->user()->year) }}'>
+                                                <input type="text" name="year" class="form-control border border-2 p-2"  required>
                                                 @error('year')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -98,7 +98,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Section</label>
-                                                <input type="text" name="section" class="form-control border border-2 p-2" value='{{ old('section', auth()->user()->section) }}'>
+                                                <input type="text" name="section" class="form-control border border-2 p-2"  required>
                                                 @error('section')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -106,7 +106,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Date to be used</label>
-                                                <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" value='{{ old('date_to_be_used', auth()->user()->date_to_be_used) }}'>
+                                                <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" required>
                                                 @error('date_to_be_used')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -114,7 +114,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Group No</label>
-                                                <input type="text" name="group_no" class="form-control border border-2 p-2" value='{{ old('group_no', auth()->user()->group_no) }}'>
+                                                <input type="text" name="group_no" class="form-control border border-2 p-2" required>
                                                 @error('group_no')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -122,7 +122,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Teacher</label>
-                                                <input type="text" name="teacher" class="form-control border border-2 p-2" value='{{ old('teacher', auth()->user()->teacher) }}'>
+                                                <input type="text" name="teacher" class="form-control border border-2 p-2"  required>
                                                 @error('teacher')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -130,7 +130,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Experiment No</label>
-                                                <input type="number" name="experiment_no" class="form-control border border-2 p-2" value='{{ old('experiment_no', auth()->user()->experiment_no) }}'>
+                                                <input type="number" name="experiment_no" class="form-control border border-2 p-2" required>
                                                 @error('experiment_no')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -138,7 +138,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Time</label>
-                                                <input type="time" name="time" class="form-control border border-2 p-2" value='{{ old('time', auth()->user()->time) }}'>
+                                                <input type="time" name="time" class="form-control border border-2 p-2" required>
                                                 @error('time')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -146,7 +146,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Items</label>
-                                                <input type="text" name="items" class="form-control border border-2 p-2" value='{{ old('items', auth()->user()->items) }}'>
+                                                <input type="text" name="items" class="form-control border border-2 p-2"  required>
                                                 @error('items')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -154,7 +154,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Quantity</label>
-                                                <input type="number" name="quantity" class="form-control border border-2 p-2" value='{{ old('quantity', auth()->user()->quantity) }}'>
+                                                <input type="number" name="quantity" class="form-control border border-2 p-2"  required>
                                                 @error('quantity')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -162,7 +162,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Remarks</label>
-                                                <input type="text" name="remarks" class="form-control border border-2 p-2" value='{{ old('remarks', auth()->user()->remarks) }}'>
+                                                <input type="text" name="remarks" class="form-control border border-2 p-2" required>
                                                 @error('remarks')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -194,10 +194,10 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="row">
-                                    <input type="hidden" name="id" class="form-control border border-2 p-2 " id="id">
+                                    <input type="hidden" name="id" class="form-control border border-2 p-2 " id="id" required>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Subject</label>
-                                        <input type="text" name="subject" class="form-control border border-2 p-2"  id="subject_edit">
+                                        <input type="text" name="subject" class="form-control border border-2 p-2"  id="subject_edit" required>
                                         @error('subject')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -205,7 +205,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Course</label>
-                                        <input type="text" name="course" class="form-control border border-2 p-2" id="course_edit">
+                                        <input type="text" name="course" class="form-control border border-2 p-2" id="course_edit" required>
                                         @error('course')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -213,7 +213,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Year </label>
-                                        <input type="text" name="year" class="form-control border border-2 p-2" id="year_edit">
+                                        <input type="text" name="year" class="form-control border border-2 p-2" id="year_edit" required>
                                         @error('year')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -221,7 +221,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Section</label>
-                                        <input type="text" name="section" class="form-control border border-2 p-2" id="section_edit">
+                                        <input type="text" name="section" class="form-control border border-2 p-2" id="section_edit" required>
                                         @error('section')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -229,7 +229,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Date to be used</label>
-                                        <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" id="date_to_be_used_edit">
+                                        <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" id="date_to_be_used_edit" required>
                                         @error('date_to_be_used')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -237,7 +237,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Group No</label>
-                                        <input type="text" name="group_no" class="form-control border border-2 p-2" id="group_no_edit">
+                                        <input type="text" name="group_no" class="form-control border border-2 p-2" id="group_no_edit" required>
                                         @error('group_no')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -245,7 +245,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Teacher</label>
-                                        <input type="text" name="teacher" class="form-control border border-2 p-2" id="teacher_edit">
+                                        <input type="text" name="teacher" class="form-control border border-2 p-2" id="teacher_edit" required>
                                         @error('teacher')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -253,7 +253,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Experiment No</label>
-                                        <input type="number" name="experiment_no" class="form-control border border-2 p-2" id="experiment_no_edit">
+                                        <input type="number" name="experiment_no" class="form-control border border-2 p-2" id="experiment_no_edit" required>
                                         @error('experiment_no')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -261,7 +261,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Time</label>
-                                        <input type="time" name="time" class="form-control border border-2 p-2" id="time_edit">
+                                        <input type="time" name="time" class="form-control border border-2 p-2" id="time_edit" required>
                                         @error('time')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -269,7 +269,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Items</label>
-                                        <input type="text" name="items" class="form-control border border-2 p-2" id="items_edit">
+                                        <input type="text" name="items" class="form-control border border-2 p-2" id="items_edit" required>
                                         @error('items')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -277,7 +277,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Quantity</label>
-                                        <input type="number" name="quantity" class="form-control border border-2 p-2" id="quantity_edit">
+                                        <input type="number" name="quantity" class="form-control border border-2 p-2" id="quantity_edit" required>
                                         @error('quantity')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -301,39 +301,6 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="modal fade" id="updateModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modelHeading"></h4>
-                    </div>
-                    <div class="modal-body">
-                        <form id="productForm" name="productForm" class="form-horizontal">
-                           <input type="hidden" name="product_id" id="product_id">
-                            <div class="form-group">
-                                <label for="name" class="col-sm-2 control-label">Name</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="" maxlength="50" required="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Details</label>
-                                <div class="col-sm-12">
-                                    <textarea id="detail" name="detail" required="" placeholder="Enter Details" class="form-control"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-offset-2 col-sm-10">
-                             <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
-                             </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
         </main>
         </div>
     @endsection
@@ -465,17 +432,8 @@
                             $('#items_edit').val(response.data.items);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#remarks_edit').val(response.data.remarks);
-                            // form[1].value = response.data.subject ?? "";
-                            // form[2].value = response.data.course ?? "";
-                            // form[3].value = response.data.year ?? "";
-                            // form[4].value = response.data.section ?? "";
-                            // form[5].value = response.data.date_to_be_used ?? null;
-                            // form[6].value = response.data.group_no ?? "";
-                            // form[7].value = response.data.experiment_no ?? null;
-                            // form[8].value = response.data.time ?? null;
-                            // form[9].value = response.data.items ?? "";
-                            // form[10].value = response.data.quantity ?? "";
-                            // form[11].value = response.data.remarks ?? "";
+							$('#teacher_edit').val(response.data.teacher);
+                          
                         }
                     });
                 }
@@ -497,6 +455,7 @@
                             $('#items_edit').val(response.data.items);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#remarks_edit').val(response.data.remarks);
+                            $('#teacher_edit').val(response.data.teacher);
                         }
 
                         });

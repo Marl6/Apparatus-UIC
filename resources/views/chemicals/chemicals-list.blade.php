@@ -2,7 +2,7 @@
 
     @section('head-script')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
@@ -10,7 +10,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.min.css')}}">
-    <script type="text/javascript" src="{{asset('sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('sweetalert2/dist/sweetalert2.min.js')}}"></script> --}}
+
+    <link href="{{ asset('twitter-bootstrap5/5.0.1/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('datatables/1.11.4/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('jquery/jquery-3.5.1.js') }}"></script>
+    <script src="{{ asset('jquery/jquery-validate/1.19.0/jquery.validate.js') }}"></script>
+    <script src="{{ asset('datatables/1.11.4/js/jquery.dataTables.min.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
+    <script src="{{ asset('bootstrap5/5.0.2/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('datatables/1.11.4/js/dataTables.bootstrap5.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('sweetalert2/dist/sweetalert2.min.css') }}">
+    <script type="text/javascript" src="{{ asset('sweetalert2/dist/sweetalert2.min.js') }}"></script>
     @endsection
 
     @section('content')
@@ -51,7 +62,7 @@
                         </div>
                     </div>
 
-                    </div>
+                </div>
                     <!-- ADD Modal -->
                     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -69,7 +80,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Date Requested</label>
-                                                <input type="date" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}'>
+                                                <input type="date" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}' required>
                                                 @error('date_requested')
                                             <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror
@@ -77,7 +88,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">date To Be Used</label>
-                                                <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" value='{{ old('date_to_be_used', auth()->user()->date_to_be_used) }}'>
+                                                <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" value='{{ old('date_to_be_used', auth()->user()->date_to_be_used) }}' required>
                                                 @error('date_to_be_used')
                                             <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror
@@ -85,7 +96,7 @@
 
                                             <div class="mb-3 col-md-6">
                                             <label class="form-label">Chemical Name </label>
-                                            <input type="text" name="chemical" class="form-control border border-2 p-2" value='{{ old('chemical', auth()->user()->chemical) }}'>
+                                            <input type="text" name="chemical" class="form-control border border-2 p-2" value='{{ old('chemical', auth()->user()->chemical) }}' required>
                                             @error('chemical')
                                             <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror
@@ -93,7 +104,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Quantity</label>
-                                                <input type="number" name="quantity" class="form-control border border-2 p-2" value='{{ old('quantity', auth()->user()->quantity) }}'>
+                                                <input type="number" name="quantity" class="form-control border border-2 p-2" value='{{ old('quantity', auth()->user()->quantity) }}' required>
                                                 @error('quantity')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -101,7 +112,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Requested By</label>
-                                                <input type="text" name="requested_by" class="form-control border border-2 p-2" value='{{ old('requested_by', auth()->user()->requested_by) }}'>
+                                                <input type="text" name="requested_by" class="form-control border border-2 p-2" value='{{ old('requested_by', auth()->user()->requested_by) }}' required>
                                                 @error('requested_by')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -109,7 +120,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Prepared By</label>
-                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" value='{{ old('prepared_by', auth()->user()->prepared_by) }}'>
+                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" value='{{ old('prepared_by', auth()->user()->prepared_by) }}' required>
                                                 @error('prepared_by')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -127,150 +138,80 @@
                     </div>
 
 
-                    <!-- EDIT Modal -->
-                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit Information</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                               {{-- onsubmit="saveChemicals(event) --}}
-                                <form action="{{ route('updateChemicals')}}" method="post"  id="updateChemicalsForm" >
-                                    @csrf
-                                    <div class="modal-body">
+                <!-- EDIT Modal -->
+                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            {{-- onsubmit="saveChemicals(event) --}}
+                            <form action="{{ route('updateChemicals')}}" method="post"  id="updateChemicalsForm" >
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="row">
                                         <div class="row">
-                                            <div class="row">
-                                                <input type="hidden" name="id" class="form-control border border-2 p-2 " id="id">
-                                                <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Date Requested</label>
-                                                    <input type="date" name="date_requested" class="form-control border border-2 p-2 " id="date_requested_edit">
-                                                    @error('date_requested')
-                                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                                    @enderror
-                                                </div>
+                                            <input type="hidden" name="id" class="form-control border border-2 p-2 " id="id">
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Date Requested</label>
+                                                <input type="date" name="date_requested" class="form-control border border-2 p-2 " id="date_requested_edit" required>
+                                                @error('date_requested')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
+                                            </div>
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label class="form-label">date to be Used</label>
-                                                    <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" id="date_to_be_used_edit">
-                                                    @error('date_to_be_used')
-                                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                                    @enderror
-                                                </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">date to be Used</label>
+                                                <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" id="date_to_be_used_edit" required>
+                                                @error('date_to_be_used')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
+                                            </div>
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Chemical Name</label>
-                                                    <input type="text" name="chemical_name" class="form-control border border-2 p-2 " id="chemical_name_edit">
-                                                    @error('chemical_name')
-                                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                                    @enderror
-                                                </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Chemical Name</label>
+                                                <input type="text" name="chemical_name" class="form-control border border-2 p-2 " id="chemical_name_edit" required>
+                                                @error('chemical_name')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
+                                            </div>
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Quantity</label>
-                                                    <input type="number" name="quantity" class="form-control border border-2 p-2" id="quantity_edit">
-                                                    @error('quantity')
-                                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                                    @enderror
-                                                </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Quantity</label>
+                                                <input type="number" name="quantity" class="form-control border border-2 p-2" id="quantity_edit" required>
+                                                @error('quantity')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
+                                            </div>
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Requested By</label>
-                                                    <input type="text" name="requested_by" class="form-control border border-2 p-2" id="requested_by_edit">
-                                                    @error('requested_by')
-                                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                                    @enderror
-                                                </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Requested By</label>
+                                                <input type="text" name="requested_by" class="form-control border border-2 p-2" id="requested_by_edit" required>
+                                                @error('requested_by')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
+                                            </div>
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Prepared By</label>
-                                                    <input type="text" name="prepared_by" class="form-control border border-2 p-2" id="prepared_by_edit">
-                                                    @error('prepared_by')
-                                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                                    @enderror
-                                                </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Prepared By</label>
+                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" id="prepared_by_edit" required>
+                                                @error('prepared_by')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" id="updatebutton">Update</button>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" id="updatebutton">Update</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
-                    {{-- <!-- EDIT Modal -->
-                    <div class="modal fade" id="ajaxModel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit Information</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <form name="update-chemicals-form">
-                                        {{-- <div class="row">
-
-                                        <div class="row">
-
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Date Requested</label>
-                                        <input type="date" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}'>
-                                        @error('date_requested')
-                                        <p class='text-danger inputerror'>{{ $message }} </p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Date to be used</label>
-                                        <input type="date" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}'>
-                                        @error('date_requested')
-                                        <p class='text-danger inputerror'>{{ $message }} </p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Chemical Name</label>
-                                        <input type="name" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}'>
-                                        @error('date_requested')
-                                        <p class='text-danger inputerror'>{{ $message }} </p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Quantity</label>
-                                        <input type="number" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}'>
-                                        @error('date_requested')
-                                        <p class='text-danger inputerror'>{{ $message }} </p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Requested By</label>
-                                        <input type="name" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}'>
-                                        @error('date_requested')
-                                        <p class='text-danger inputerror'>{{ $message }} </p>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Prepared By</label>
-                                        <input type="name" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}'>
-                                        @error('date_requested')
-                                        <p class='text-danger inputerror'>{{ $message }} </p>
-                                        @enderror
-                                    </div> --}}
-
-                                    {{-- <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Add Item</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div> --}}
-
+                </div>
+            </div>
 
     @endsection
 
@@ -386,13 +327,7 @@
                             $('#quantity_edit').val(response.data.quantity);
                             $('#requested_by_edit').val(response.data.requested_by);
                             $('#prepared_by_edit').val(response.data.prepared_by);
-                            // $('.chemicalName').value(response.data.chemical_name);
-                            // form[0].value = response.data.date_requested ?? null;
-                            // form[1].value = response.data.date_to_be_used ?? "";
-                            // form[2].value = response.data.chemical_name ?? "";
-                            // form[3].value = response.data.quantity ?? null;
-                            // form[4].value = response.data.requested_by ?? "";
-                            // form[5].value = response.data.prepared_by ?? "";
+
 
                         }
                     });
@@ -411,14 +346,6 @@
                             $('#quantity_edit').val(response.data.quantity);
                             $('#requested_by_edit').val(response.data.requested_by);
                             $('#prepared_by_edit').val(response.data.prepared_by);
-                            // $('.chemicalName').value(response.data.chemical_name);
-                            // form[0].value = response.data.date_requested ?? null;
-                            // form[1].value = response.data.date_to_be_used ?? "";
-                            // form[2].value = response.data.chemical_name ?? "";
-                            // form[3].value = response.data.quantity ?? null;
-                            // form[4].value = response.data.requested_by ?? "";
-                            // form[5].value = response.data.prepared_by ?? "";
-
                         }
                     });
                 });

@@ -21,73 +21,6 @@ use App\Http\Controllers\UserList;
 |
 */
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index');})->name('dashboard');
-
-
-// /**
-//  * Dashboard Routes
-//  */
-// Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/dashboard', 'index')->name('dashboard');
-// });
-
-// /**
-//  * User Routes
-//  */
-// Route::controller(UserManagementController::class)->middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/user-management', 'index')->name('user-management');
-// });
-
-// Route::get('/user-management',[UserManagementController::class,'index'])->middleware(['auth', 'verified'])->name('user-management');
-
-// Route::get('list',[UserList::class,'show']);
-
-
-// Route::get('/apparatus', function () {
-//     return view('apparatus');
-// })->middleware(['auth', 'verified'])->name('apparatus');
-
-// Route::get('/Breakages', function () {
-//     return view('Breakages');
-// })->middleware(['auth', 'verified'])->name('Breakages');
-
-// Route::get('/user-management',[UserManagementController::class,'index'])->middleware(['auth', 'verified'])->name('user-management');
-
-
-// Route::post('/addUser', [UserManagementController::class, 'addUser'])->name('addUser');
-// Route::post('/addApparatus', [ApparatusController::class, 'addApparatus'])->name('addApparatus');
-// Route::post('/addBreakages', [BreakagesController::class, 'addBreakages'])->name('addBreakages');
-// Route::post('/addChemicals', [ChemicalsController::class, 'addChemicals'])->name('addChemicals');
-
-
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// // APPARATUS CONTROLLER
-
-
-// // CHEMICALS GROUP
-// Route::controller(ChemicalsController::class)->middleware('auth')->group(function() {
-//     Route::post('/chemicals','index')->name('chemicals');
-//     Route::post('/chemicals/delete', 'Chemicalsdelete');
-// });
-
-// Route::middleware('auth')->group(function () {
-//     // Route::post('/addApparatus',[ApparatusController::class, 'addApparatus'])->name('addApparatus');
-//     Route::get('/apparatus',[ApparatusController::class, 'index'])->name('apparatus');
-//     Route::get('/apparatus/{id}',[ApparatusController::class, 'delete'])->name('deleted');
-//     // Route::get('/Edit-apparatus', [ApparatusController::class, 'edit'])->name('edited');
-// });
-
-// Route::middleware('auth')->group(function () {
-//     // Route::post('/addBreakages',[BreakagesController::class, 'addBreakages'])->name('addBreakages');
-//     Route::get('/Breakages',[BreakagesController::class, 'index'])->name('Breakages');
-// });
 
 /**
  * Dashboard Routes
@@ -100,7 +33,7 @@ Route::controller(DashboardController::class)->middleware(['auth', 'verified'])-
  * User Routes
  */
 Route::controller(UserManagementController::class)->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/user-management', 'index')->name('user-management');
+    Route::get('/user-management', 'index')->name('user_management');
     Route::post('/addUser', 'addUser')->name('addUser');
 
 });
