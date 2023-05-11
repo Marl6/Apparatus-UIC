@@ -27,7 +27,7 @@
     @section('content')
     <x-navbars.sidebar activePage='chemicals'></x-navbars.sidebar>
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
-            <x-navbars.navs.auth titlePage="chemicals"></x-navbars.navs.auth>
+            <x-navbars.navs.auth titlePage="Chemicals"></x-navbars.navs.auth>
             <div class = "container-fluid py-5">
                 <div class = "row">
                     <div class = "me-3 my-3 text-end">

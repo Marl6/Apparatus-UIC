@@ -28,9 +28,9 @@
 										@if ($array_value['apparatus_list'][0]->apparatus_id > 0)
 											@foreach ($array_value['apparatus_list'] as $result)
 												<tr>
-													<td class="align-center">{{ $result->row_num; }}</td>
-													<td class="align-left">{{ $result->label; }}</td>
-													<td class="align-center">{{ $result->statuscode_label; }}</td>
+													<td class="align-center">{{ $result->row_num }}</td>
+													<td class="align-left">{{ $result->label }}</td>
+													<td class="align-center">{{ $result->statuscode_label }}</td>
 													<td class="align-center">
 														Update | Delete
 													</td>

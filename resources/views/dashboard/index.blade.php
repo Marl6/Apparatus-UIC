@@ -19,54 +19,120 @@
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="Dashboard"></x-navbars.navs.auth>
         <!-- End Navbar -->
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="apparatus-tab" data-bs-toggle="tab" data-bs-target="#apparatus" type="button" role="tab" aria-controls="apparatus" aria-selected="true">Apparatus</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="breakages-tab" data-bs-toggle="tab" data-bs-target="#breakages" type="button" role="tab" aria-controls="breakages" aria-selected="false">Breakages</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="chemicals-tab" data-bs-toggle="tab" data-bs-target="#chemicals" type="button" role="tab" aria-controls="chemicals" aria-selected="false">Chemicals</button>
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="apparatus" role="tabpanel" aria-labelledby="apparatus-tab">
-                <h3>Apparatus</h3>
-                <table class="table table-apparatus" id="table-apparatus">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">Date to be used</th>
-                        <th scope="col">Group No</th>
-                        <th scope="col">Teacher</th>
-                        <th scope="col">Experiment No</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Items</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Remarks</th>
-                      </tr>
-                    </thead>         
-                </table>
+        <div class="container-fluid py-6">
+            <div class="row">
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-header p-3 pt-2">
+                            <div
+                                class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                <i class="text-xl lg-0 text-capitalize">{{ $apparatus}}</i>
+
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="text-lg mb-4 text-capitalize">Total of Apparatus Borrowing</p>
+                            </div>
+                        </div>
+                        <hr class="dark horizontal my-0">
+                        <div class="card-footer p-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-header p-3 pt-2">
+                            <div
+                                class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                                <i class="text-xl mb-0 text-capitalize">{{ $breakages}}</i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="text-lg mb-4 text-capitalize">Total of Breakages</p>
+                            </div>
+                        </div>
+                        <hr class="dark horizontal my-0">
+                        <div class="card-footer p-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-header p-3 pt-2">
+                            <div
+                                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                                <i class="text-xl mb-0 text-capitalize">{{$chemicals}}</i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="text-lg mb-4 text-capitalize">Total of Chemicals Used</p>
+                            </div>
+                        </div>
+                        <hr class="dark horizontal my-0">
+                        <div class="card-footer p-3">
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="col-xl-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-header p-3 pt-2">
+                            <div
+                                class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                                <i class="material-icons opacity-10">weekend</i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="text-sm mb-0 text-capitalize">User-Lists</p>
+                            </div>
+                        </div>
+                        <hr class="dark horizontal my-0">
+                        <div class="card-footer p-3">
+                        </div>
+                    </div>
+                </div> --}}
             </div>
-            <div class="tab-pane fade" id="breakages" role="tabpanel" aria-labelledby="breakages-tab">
-                <h3>Breakages</h3>
-                <table class="table table-breakages">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Group_No</th>
-                        <th scope="col">Requisition ID</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Datetime_paid</th>
-                        <th scope="col">Statuscode</th>
-                        
-                      </tr>
-                    </thead>
-                </table>
+            {{-- <div class="row mt-4">
+                <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2 ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                                </div>
+                            </div> --}}
+                        </div>
+                        {{-- <div class="card-body">
+                            <h6 class="mb-0 ">Available Apparatus</h6>
+                            <hr class="dark horizontal">
+                        </div> --}}
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                    {{-- <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
+                                </div>
+                            </div> --}}
+                        </div>
+                        {{-- <div class="card-body">
+                            <h6 class="mb-0 "> Available Chemicals</h6>
+                            <hr class="dark horizontal">
+                        </div> --}}
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mb-3">
+                    {{-- <div class="card z-index-2 ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
+                                </div>
+                            </div> --}}
+                        </div>
+                        {{-- <div class="card-body">
+                            <h6 class="mb-0 ">Breakages(Paid & Unpaid)</h6>
+                            <hr class="dark horizontal">
+                        </div> --}}
+                    </div>
+                </div>
             </div>
                   
             <div class="tab-pane fade" id="chemicals" role="tabpanel" aria-labelledby="chemicals-tab">

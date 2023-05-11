@@ -26,11 +26,16 @@ use App\Http\Controllers\UserList;
  * Dashboard Routes
  */
 Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->group(function () {
+<<<<<<< HEAD
     Route::get('/dashboard', 'getApparatus')->name('dashboard');
     // Route::get('/apparatus-table', 'getApparatus')->name('apparatus.table');
     Route::get('/breakages', 'index')->name('Breakages');
     Route::get('/chemicals', 'index')->name('chemicals');
   
+=======
+    // Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/dashboard','sum')->name('dashboard');
+>>>>>>> 4aa3f620f88db01ece818bcb6199903e7770a4d8
 });
 
 /**

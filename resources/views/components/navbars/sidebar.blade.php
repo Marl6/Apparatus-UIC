@@ -7,12 +7,12 @@
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('dashboard') }} ">
-            {{-- <img src="{{ asset('materialUI/material/assets/img/logo-ct.png') }}" class="navbar-brand-img h-100" alt="main_logo"> --}}
+            <img src="{{ asset('https://my.uic.edu.ph/assets/images/uic-logo-small.png') }}" class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-2 font-weight-bold text-white">Apparatus & Chemicals Requisition</span>
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
-    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
+
         <ul class="navbar-nav">
             <li class="nav-item mt-3">
             <li class="nav-item">
@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Pages</h6>
+                
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'dashboard' ? ' active bg-gradient-primary' : '' }} "
@@ -63,6 +63,7 @@
                     <span class="nav-link-text ms-1">Chemicals</span>
                 </a>
             </li>
+<<<<<<< HEAD
             {{-- <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'billing' ? ' active bg-gradient-primary' : '' }}  "
                     href="#">
@@ -72,8 +73,18 @@
                     <span class="nav-link-text ms-1">Billing</span>
                 </a>
             </li> --}}
+=======
+>>>>>>> 4aa3f620f88db01ece818bcb6199903e7770a4d8
         </ul>
-    </div>
-
+    
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+        <div class="mx-3">
+            <a href="javascript:;" class="btn bg-gradient-primary w-100 my-4 mb-2">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none"
+                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sign
+                    Out</span>
+            </a>
+        </div>
 
 </aside>
