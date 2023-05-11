@@ -4,17 +4,18 @@
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="Dashboard"></x-navbars.navs.auth>
         <!-- End Navbar -->
-        <div class="container-fluid py-4">
+        <div class="container-fluid py-6">
             <div class="row">
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">weekend</i>
+                                <i class="text-xl lg-0 text-capitalize">{{ $apparatus}}</i>
+
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Apparatus</p>
+                                <p class="text-lg mb-4 text-capitalize">Total of Apparatus Borrowing</p>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -22,15 +23,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">person</i>
+                                <i class="text-xl mb-0 text-capitalize">{{ $breakages}}</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Breakages</p>
+                                <p class="text-lg mb-4 text-capitalize">Total of Breakages</p>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -38,15 +39,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">person</i>
+                                <i class="text-xl mb-0 text-capitalize">{{$chemicals}}</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Chemicals</p>
+                                <p class="text-lg mb-4 text-capitalize">Total of Chemicals Used</p>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -54,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6">
+                {{-- <div class="col-xl-3 col-sm-6">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
@@ -69,9 +70,9 @@
                         <div class="card-footer p-3">
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
-            <div class="row mt-4">
+            {{-- <div class="row mt-4">
                 <div class="col-lg-4 col-md-6 mt-4 mb-4">
                     <div class="card z-index-2 ">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -79,42 +80,42 @@
                                 <div class="chart">
                                     <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
-                        <div class="card-body">
+                        {{-- <div class="card-body">
                             <h6 class="mb-0 ">Available Apparatus</h6>
                             <hr class="dark horizontal">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                    <div class="card z-index-2  ">
+                    {{-- <div class="card z-index-2  ">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                             <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
                                 <div class="chart">
                                     <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
-                        <div class="card-body">
+                        {{-- <div class="card-body">
                             <h6 class="mb-0 "> Available Chemicals</h6>
                             <hr class="dark horizontal">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-4 mt-4 mb-3">
-                    <div class="card z-index-2 ">
+                    {{-- <div class="card z-index-2 ">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                             <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
                                 <div class="chart">
                                     <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
-                        <div class="card-body">
+                        {{-- <div class="card-body">
                             <h6 class="mb-0 ">Breakages(Paid & Unpaid)</h6>
                             <hr class="dark horizontal">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

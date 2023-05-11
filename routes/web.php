@@ -26,7 +26,8 @@ use App\Http\Controllers\UserList;
  * Dashboard Routes
  */
 Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', 'index')->name('dashboard');
+    // Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/dashboard','sum')->name('dashboard');
 });
 
 /**
