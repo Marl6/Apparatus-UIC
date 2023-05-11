@@ -49,12 +49,12 @@
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
-                                            <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-1">group_no</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">requisition_id</th>
+                                            <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-1">group no</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">requisition id</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">amount</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">datetime_added</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">statuscode</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">datetime paid</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">Status code</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Action</th>
                                         </tr>
                                     </thead>
@@ -63,80 +63,78 @@
                         </div>
                     </div>
 
-                    </div>
+                </div>
                     <!-- ADD Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h1 class="modal-title fs-4" id="exampleModalLabel">Breakages</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form method='POST' action='{{ route('addBreakages')}}'>
-                                    @csrf
-                                    <div class="row">
-
-                                        <div class="row">
-
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label">Group No</label>
-                                                <input type="number" name="group_no" class="form-control border border-2 p-2" required>
-                                                @error('group_no')
-                                            <p class='text-danger inputerror'>{{ $message }} </p>
-                                            @enderror
-                                            </div>
-
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label">Requisition ID</label>
-                                                <input type="number" name="requisition_id" class="form-control border border-2 p-2" required>
-                                                @error('requisition_id')
-                                            <p class='text-danger inputerror'>{{ $message }} </p>
-                                            @enderror
-                                            </div>
-
-
-                                            <div class="mb-3 col-md-6">
-                                            <label class="form-label">Quantity</label>
-                                            <input type="number" name="quantity" class="form-control border border-2 p-2"  required>
-                                            @error('quantity')
-                                            <p class='text-danger inputerror'>{{ $message }} </p>
-                                            @enderror
-                                            </div>
-
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label">Amount</label>
-                                                <input type="text" name="amount" class="form-control border border-2 p-2" required>
-                                                @error('amount')
-                                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                                @enderror
-                                            </div>
-
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label">Date</label>
-                                                <input type="date" name="datetime_added" class="form-control border border-2 p-2" required>
-                                                @error('date')
-                                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                                @enderror
-                                            </div>
-
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label">Status Code</label>
-                                                <input type="text" name="statuscode" class="form-control border border-2 p-2"  required>
-                                                @error('statuscode')
-                                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                                @enderror
-                                            </div>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-4" id="exampleModalLabel">Breakages</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
+                                    <div class="modal-body">
+                                        <form method='POST' action='{{ route('addBreakages')}}'>
+                                            @csrf
+                                            <div class="row">
+                                                <div class="row">
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Group No</label>
+                                                        <input type="number" name="group_no" class="form-control border border-2 p-2" required>
+                                                        @error('group_no')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Requisition ID</label>
+                                                        <input type="number" name="requisition_id" class="form-control border border-2 p-2" required>
+                                                        @error('requisition_id')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Quantity</label>
+                                                        <input type="number" name="quantity" class="form-control border border-2 p-2"  required>
+                                                        @error('quantity')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Amount</label>
+                                                        <input type="text" name="amount" class="form-control border border-2 p-2" required>
+                                                        @error('amount')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                    </div>
+
+                                                     <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Datetime paid</label>
+                                                        <input type="date" name="datetime_paid" class="form-control border border-2 p-2" required>
+                                                        @error('datetime_paid')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Status Code</label>
+                                                        <input type="text" name="statuscode" class="form-control border border-2 p-2"  required>
+                                                        @error('statuscode')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
                             </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </form>
                         </div>
-                        </div>
-                    </div>
                     </div>
 
                      <!-- EDIT Modal -->
@@ -188,13 +186,15 @@
                                                     @enderror
                                                 </div>
 
+                                                
                                                 <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Date</label>
-                                                    <input type="date" name="datetime_added" class="form-control border border-2 p-2"  id="datetime_added_edit" required>
-                                                    @error('date')
+                                                    <label class="form-label">Datetime paid</label>
+                                                    <input type="date" name="datetime_paid" class="form-control border border-2 p-2 "id="datetime_paid_edit" required>
+                                                    @error('datetime_paid')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
                                                 </div>
+
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Status Code</label>
@@ -214,9 +214,9 @@
                             </div>
                         </div>
                     </div>
-
-            </main>
             </div>
+        </main>
+           
         @endsection
 
         @section('body-script')
@@ -234,9 +234,9 @@
                             {data: 'requisition_id', name: 'requisition_id'},
                             {data: 'quantity', name: 'quantity'},
                             {data: 'amount', name: 'amount'},
-                            {data: 'datetime_added', name: 'datetime_added'},
+                            {data: 'datetime_paid', name: 'datetime_paid'},
                             {data: 'statuscode', name: 'statuscode'},
-                            {data: 'action', name: 'action', orderable: false, searchable: false},
+                            {data: 'action', name: 'action', orderable: false, searchable: false}
                         ]
                     });
                 });
@@ -260,7 +260,7 @@
                         'requisition_id': form.get('requisition_id')  ?? null,
                         'quantity': form.get('quantity')  ?? null,
                         'amount': form.get('amount')  ?? null,
-                        'datetime_added': form.get('datetime_added')  ?? null,
+                        'created_at': form.get('created_at')  ?? null,
                         'datetime_update': form.get('datetime_update')  ?? null,
                         'statuscode': form.get('statuscode')  ?? null,
                     };
@@ -322,8 +322,7 @@
                             $('#requisition_id_edit').val(response.data.requisition_id);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#amount_edit').val(response.data.amount);
-                            $('#datetime_added_edit').val(response.data.datetime_added);
-                            $('#datetime_update_edit').val(response.data.datetime_update);
+                            $('#datetime_paid_edit').val(response.data.datetime_paid);
                             $('#statuscode_edit').val(response.data.statuscode);
                         }
                     });
@@ -340,8 +339,7 @@
                             $('#requisition_id_edit').val(response.data.requisition_id);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#amount_edit').val(response.data.amount);
-                            $('#datetime_added_edit').val(response.data.datetime_added);
-                            $('#datetime_update_edit').val(response.data.datetime_update);
+                            $('#datetime_paid_edit').val(response.data.datetime_paid);
                             $('#statuscode_edit').val(response.data.statuscode);
 
                         }

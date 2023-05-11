@@ -39,12 +39,8 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">subject</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">course</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">year</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">section</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">date_to_be_used</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">group_no</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">teacher</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">experiment_no</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">time</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">items</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
@@ -323,12 +319,8 @@
                             {data: 'id', name: 'id'},
                             {data: 'subject', name: 'subject'},
                             {data: 'course', name: 'course'},
-                            {data: 'year', name: 'year'},
-                            {data: 'section', name: 'section'},
                             {data: 'date_to_be_used', name: 'date_to_be_used'},
-                            {data: 'group_no', name: 'group_no'},
                             {data: 'teacher', name: 'teacher'},
-                            {data: 'experiment_no', name: 'experiment_no'},
                             {data: 'time', name: 'time'},
                             {data: 'items', name: 'items'},
                             {data: 'quantity', name: 'quantity'},

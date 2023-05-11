@@ -1,4 +1,4 @@
-@extends('layouts.default')
+{{-- @extends('layouts.default')
 <x-navbars.sidebar activePage='apparatus'></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
 
@@ -457,4 +457,4 @@
  --}}
 
 
-
+ --}}

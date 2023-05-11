@@ -16,8 +16,7 @@ class BreakagesController extends Controller
         $breakages->requisition_id = $request->requisition_id;
         $breakages->quantity = $request->quantity;
         $breakages->amount = $request->amount;
-        $breakages->datetime_added = $request->datetime_added;
-        $breakages->datetime_update = $request->datetime_update;
+        $breakages->datetime_paid = $request->datetime_paid;
         $breakages->statuscode = $request->statuscode;
         $breakages->save();
 
@@ -35,9 +34,16 @@ class BreakagesController extends Controller
                                '<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $breakages->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
                             return $btn;
 
-                    })->editColumn('time', function($data){
-                        $time = strtotime($data->time);
+                    })->editColumn('time', function($breakages){
+                        $time = strtotime($breakages->time);
                         return date("g:i a", $time);
+                    })
+                    ->editColumn('datetime_paid', function($breakages){
+                        $datetime_paid = strtotime($breakages->datetime_paid);
+                        return date("F j, Y ", $datetime_paid);
+                    })
+                    ->editColumn('statuscode', function($breakages){
+                        return $breakages->statuscode;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
@@ -75,8 +81,8 @@ class BreakagesController extends Controller
             'requisition_id' => $request->input('requisition_id'),
             'quantity' => $request->input('quantity'),
             'amount' => $request->input('amount'),
-            'datetime_added' => $request->input('datetime_added'),
-            'datetime_update' => $request->input('datetime_update'),
+            'datetime_paid' => $request->input('datetime_paid'),
+            // 'created_at' => $request->input('created_at'),
             'statuscode' => $request->input('statuscode'),
           ]);
           return redirect()->back();

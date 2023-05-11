@@ -26,7 +26,11 @@ use App\Http\Controllers\UserList;
  * Dashboard Routes
  */
 Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/dashboard', 'getApparatus')->name('dashboard');
+    // Route::get('/apparatus-table', 'getApparatus')->name('apparatus.table');
+    Route::get('/breakages', 'index')->name('Breakages');
+    Route::get('/chemicals', 'index')->name('chemicals');
+  
 });
 
 /**
@@ -79,5 +83,11 @@ Route::controller(ChemicalsController::class)->middleware(['auth', 'verified'])-
     Route::post('/chemicals/delete', 'deleteChemicals');
     Route::post('/chemicals/update', 'updateChemicals')->name('updateChemicals');
 });
+
+Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->group(function() {
+    Route::get('/Dashboard', 'index')->name('Dashboard');
+   
+});
+
 
 require __DIR__.'/auth.php';

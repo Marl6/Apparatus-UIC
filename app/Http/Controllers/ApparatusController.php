@@ -53,9 +53,13 @@ class ApparatusController extends Controller
                                '<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $apparatus->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
                         return $btn;
 
-                    })->editColumn('time', function($data){
+                    })
+                    ->editColumn('time', function($data){
                         $time = strtotime($data->time);
                         return date("g:i a", $time);
+                    })
+                    ->editColumn('course', function ($apparatus){
+                        return $apparatus->course . " " . $apparatus->section;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
