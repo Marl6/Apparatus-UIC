@@ -30,7 +30,7 @@
 
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-lg mb-4 text-capitalize">Total of Apparatus Borrowing</p>
+                                <p class="text-lg mb-3 text-capitalize">Total of Apparatus Borrowing</p>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -70,142 +70,154 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-xl-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-header p-3 pt-2">
-                            <div
-                                class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">weekend</i>
+            </div>
+            <div class="row">
+                <div class="mt-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="apparatus-tab" data-bs-toggle="tab" data-bs-target="#apparatus" type="button" role="tab" aria-controls="apparatus" aria-selected="true">Apparatus</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="breakages-tab" data-bs-toggle="tab" data-bs-target="#breakages" type="button" role="tab" aria-controls="breakages" aria-selected="false">Breakages</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="chemicals-tab" data-bs-toggle="tab" data-bs-target="#chemicals" type="button" role="tab" aria-controls="chemicals" aria-selected="false">Chemicals</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="apparatus" role="tabpanel" aria-labelledby="apparatus-tab">
+                    <h3>Apparatus</h3>
+                    {{-- <table class="table table-apparatus" id="table-apparatus">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Date to be used</th>
+                            <th scope="col">Group No</th>
+                            <th scope="col">Teacher</th>
+                            <th scope="col">Experiment No</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Items</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Remarks</th>
+                          </tr>
+                        </thead>         
+                    </table> --}}
+                    <div class="col-lg-25 col-md-30 mb-md-5 mb-1">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <table id="table-apparatus" class="table table-responsive align-items-center mb-1">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">subject</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">course</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">date_to_be_used</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">teacher</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">time</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">items</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">remarks</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
-                            <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">User-Lists</p>
-                            </div>
                         </div>
-                        <hr class="dark horizontal my-0">
-                        <div class="card-footer p-3">
-                        </div>
-                    </div>
-                </div> --}}
-            </div>
-            {{-- <div class="row mt-4">
-                <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                    <div class="card z-index-2 ">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                <div class="chart">
-                                    <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-                                </div>
-                            </div> --}}
-                        </div>
-                        {{-- <div class="card-body">
-                            <h6 class="mb-0 ">Available Apparatus</h6>
-                            <hr class="dark horizontal">
-                        </div> --}}
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                    {{-- <div class="card z-index-2  ">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                            <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                                <div class="chart">
-                                    <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
-                                </div>
-                            </div> --}}
-                        </div>
-                        {{-- <div class="card-body">
-                            <h6 class="mb-0 "> Available Chemicals</h6>
-                            <hr class="dark horizontal">
-                        </div> --}}
-                    </div>
+                <div class="tab-pane fade" id="breakages" role="tabpanel" aria-labelledby="breakages-tab">
+                    <h3>Breakages</h3>
+                    <table class="table table-breakages">
+                        <thead>
+                            <tr>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">ID</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Group_No</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Requisition ID</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Quantity</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Amount</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Datetime_paid</th>
+                            {{-- <th scope="col">Statuscode</th> --}}
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
-                <div class="col-lg-4 mt-4 mb-3">
-                    {{-- <div class="card z-index-2 ">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                            <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
-                                <div class="chart">
-                                    <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
-                                </div>
-                            </div> --}}
-                        </div>
-                        {{-- <div class="card-body">
-                            <h6 class="mb-0 ">Breakages(Paid & Unpaid)</h6>
-                            <hr class="dark horizontal">
-                        </div> --}}
-                    </div>
+                <div class="tab-pane fade" id="chemicals" role="tabpanel" aria-labelledby="chemicals-tab">
+                    <h3>Chemicals</h3>
+                    <table class="table table-chemicals">
+                        <thead>
+                            <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">date_requested</th>
+                            <th scope="col">date_to_be_used</th>
+                            <th scope="col">chemical_name</th>
+                            <th scope="col">quantity</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
-                  
-            <div class="tab-pane fade" id="chemicals" role="tabpanel" aria-labelledby="chemicals-tab">
-                <h3>Chemicals</h3>
-                <table class="table table-chemicals">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">date_requested</th>
-                        <th scope="col">date_to_be_used</th>
-                        <th scope="col">chemical_name</th>
-                        <th scope="col">quantity</th>
-                      </tr>
-                    </thead>
-                </table>
-            </div>
-         
+        </div>
+    </main>
     <x-plugins></x-plugins>
 @endsection
 
 @section('body-script')
     {{-- <script src="{{ asset('materialUI/assets/js/plugins/chartjs.min.js') }}"></script> --}}
 
-
-
     {{--Apparatus Table  --}}
-        <script type="text/javascript">
-            $(function() {
+    <script type="text/javascript">
+        $(function() {
+            $('#table-apparatus').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('apparatus') }}",
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'subject', name: 'subject'},
+                    {data: 'course', name: 'course'},
+                    {data: 'date_to_be_used', name: 'date_to_be_used'},
+                    {data: 'teacher', name: 'teacher'},
+                    {data: 'time', name: 'time'},
+                    {data: 'items', name: 'items'},
+                    {data: 'quantity', name: 'quantity'},
+                    {data: 'remarks', name: 'remarks'},
+                    // {data: 'action', name: 'action', orderable: false, searchable: false},
 
-                $('.table-apparatus').DataTable({
-                        processing: true,
-                        serverSide: true,
-                        ajax: "{{ route('dashboard') }}",
-                        columns: [
-                            {data: 'id', name: 'id'},
-                            {data: 'subject', name: 'subject'},
-                            {data: 'course', name: 'course'},
-                            {data: 'date_to_be_used', name: 'date_to_be_used'},
-                            {data: 'group_no', name: 'group_no'},
-                            {data: 'teacher', name: 'teacher'},
-                            {data: 'experiment_no', name: 'expirement_no'},
-                            {data: 'time', name: 'time'},
-                            {data: 'items', name: 'items'},
-                            {data: 'quantity', name: 'quantity'},
-                            {data: 'remarks', name: 'remarks'}
-                        ]
-                });
-
-            
+                ]
             });
-        </script>
 
-            {{-- Breakages Table --}}
-            <script type="text/javascript">
-                $(function() {
-
-                    $('.table-breakages').DataTable({
-                            processing: true,
-                            serverSide: true,
-                            ajax: "{{ route('dashboard') }}",
-                            columns: [
-                                // {data: 'id', name: 'id'},
-                                // {data: 'group_no', name: 'group_no'},
-                                // // {data: 'requisition_id', name: 'requisition_id'},
-                                // {data: 'quantity', name: 'quantity'},
-                                // {data: 'datetime_paid', name: 'datetime_paid'},
-                                // {data: 'statuscode', name: 'statuscode'}
-                            ]
-                    });
-
-                
-                });
-            </script>
-    @endsection
+            $('.table-breakages').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ route('Breakages') }}",
+                    columns: [
+                        {data: 'id', name: 'id'},
+                        {data: 'group_no', name: 'group_no'},
+                        {data: 'requisition_id', name: 'requisition_id'},
+                        {data: 'quantity', name: 'quantity'},
+                        {data: 'datetime_paid', name: 'datetime_paid'},
+                        {data: 'statuscode', name: 'statuscode'}
+                    ]
+            });
+            $('.table-chemicals').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('chemicals') }}",
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'date_requested', name: 'date_requested'},
+                    {data: 'date_to_be_used', name: 'date_to_be_used'},
+                    {data: 'chemical_name', name: 'chemical_name'},
+                    {data: 'quantity', name: 'quantity'},
+                    // {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+        
+        });
+    </script>
+@endsection
    
    
