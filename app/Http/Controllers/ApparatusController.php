@@ -59,12 +59,16 @@ class ApparatusController extends Controller
                         return date("g:i a", $time);
                     })
                     ->editColumn('course', function ($apparatus){
-                        return $apparatus->course . " " . $apparatus->section;
+                        return $apparatus->course . " " .  $apparatus->year . "-" . $apparatus->section;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('apparatus.apparatus-list');
+        $apparatus_inventory = DB::table('apparatusInventory')->pluck('apparatus_name', 'id')->toArray();
+        $teachers = DB::table('teachers')->pluck('last_name', 'id')->toArray();
+
+        return view('apparatus.apparatus-list', ['teachers' => $teachers], ['apparatusInventory' => $apparatus_inventory]);
+        //return view('apparatus.apparatus-list');
     }
     public function deleteApparatus(Request $request)
     {
@@ -107,6 +111,15 @@ class ApparatusController extends Controller
           ]);
           return redirect()->back();
     }
+
+    public function getApparatusForm(Request $request)
+    {
+        $teachers = DB::table('teachers')->pluck('last_name', 'id')->toArray();
+        return view('apparatus.apparatus-list', ['teachers' => $teachers]);
+    }
+
+
+    
 }
 
 

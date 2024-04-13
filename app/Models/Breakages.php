@@ -12,18 +12,19 @@ class Breakages extends Model
 
     protected $table ="breakages";
     protected $primaryKey = "id";
+    public $timestamps = false; // Adjust according to your needs
+
 
     protected $fillable = [
         'group_no',
         'requisition_id',
         'quantity',
         'amount',
+        'datetime_paid',
         'datetime_added',
         'datetime_update',
         'statuscode'
-
-
     ];
-
+    
 
 }

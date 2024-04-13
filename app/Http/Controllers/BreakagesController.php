@@ -26,8 +26,8 @@ class BreakagesController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $breakages = Breakages::get()->all();
-                return Datatables::of($breakages)
+            # formerly: $breakages = Breakages::get()->all(); 
+            $breakages = Breakages::where('statuscode', 'unpaid')->get();                return Datatables::of($breakages)
                     ->addIndexColumn()
                     ->addColumn('action', function($breakages){
                         $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $breakages->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .

@@ -38,7 +38,7 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">subject</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">course</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">course_&_section</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">date_to_be_used</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">teacher</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">time</th>
@@ -78,7 +78,15 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Course</label>
-                                                <input type="text" name="course" class="form-control border border-2 p-2"  required>
+                                                <select name="course" class="form-select border border-2 p-2" required>
+                                                    <option value="">Select Course</option>
+                                                    <option value="BSCS">BSCS</option>
+                                                    <option value="BSIT">BSIT</option>
+                                                    <option value="BSIT">BSPH</option>
+                                                    <option value="BSIT">BSN</option>
+                                                    <option value="BSIT">BSMT</option>
+
+                                                </select>
                                                 @error('course')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -86,7 +94,15 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Year </label>
-                                                <input type="text" name="year" class="form-control border border-2 p-2"  required>
+                                                <select name="year" class="form-select border border-2 p-2" required>
+                                                    <option value="">Select Year</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="4">5</option>
+                                                </select>
+
                                                 @error('year')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -94,7 +110,21 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Section</label>
-                                                <input type="text" name="section" class="form-control border border-2 p-2"  required>
+                                                <select name="section" class="form-select border border-2 p-2" required>
+                                                    <option value="">Select Section</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                    <option value="D">D</option>
+                                                    <option value="E">E</option>
+                                                    <option value="F">F</option>
+                                                    <option value="G">G</option>
+                                                    <option value="H">H</option>
+                                                    <option value="I">I</option>
+
+
+                                                </select>
+
                                                 @error('section')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -102,7 +132,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Date to be used</label>
-                                                <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" required>
+                                                <input type="text" name="date_to_be_used" class="form-control border border-2 p-2" value='{{ date("m/d/Y") }}'  required>
                                                 @error('date_to_be_used')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -110,7 +140,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Group No</label>
-                                                <input type="text" name="group_no" class="form-control border border-2 p-2" required>
+                                                <input type="number" name="group_no" class="form-control border border-2 p-2" required>
                                                 @error('group_no')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -118,11 +148,17 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Teacher</label>
-                                                <input type="text" name="teacher" class="form-control border border-2 p-2"  required>
+                                                <select name="teacher" class="form-select border border-2 p-2" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach($teachers as $id => $teacher)
+                                                        <option value="{{ $teacher }}">{{ $teacher }}</option>
+                                                    @endforeach
+                                                </select>
                                                 @error('teacher')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
+
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Experiment No</label>
@@ -134,19 +170,25 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Time</label>
-                                                <input type="time" name="time" class="form-control border border-2 p-2" required>
-                                                @error('time')
-                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                <input type="text" name="time" class="form-control border border-2 p-2" value='{{ date("h:i A", strtotime("now +8 hours")) }}' readonly required>                                                @error('time')
+                                                    <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
 
+
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Items</label>
-                                                <input type="text" name="items" class="form-control border border-2 p-2"  required>
+                                                <select name="items" class="form-select border border-2 p-2" required>
+                                                    <option value="">Select Item</option>
+                                                    @foreach($apparatusInventory as $id => $apparatus)
+                                                        <option value="{{ $apparatus }}">{{ $apparatus }}</option>
+                                                    @endforeach
+                                                </select>
                                                 @error('items')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
+
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Quantity</label>
@@ -163,7 +205,7 @@
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -286,6 +328,7 @@
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
                                     </div>
+
                                 </div>
                             </div>
                         </div>

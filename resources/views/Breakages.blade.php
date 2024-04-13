@@ -198,9 +198,12 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Status Code</label>
-                                                    <input type="text" name="statuscode" class="form-control border border-2 p-2"  id="statuscode_edit" required>
+                                                    <select name="statuscode" id="statuscode_edit" class="form-select border border-2 p-2" required>
+                                                        <option value="paid">Paid</option>
+                                                        <option value="unpaid">Unpaid</option>
+                                                    </select>
                                                     @error('statuscode')
-                                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        <p class='text-danger inputerror'>{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                             </div>

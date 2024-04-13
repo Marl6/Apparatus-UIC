@@ -40,7 +40,7 @@
                 <a class="nav-link text-white {{ $activePage == 'apparatus' ? ' active bg-gradient-primary' : '' }} "
                     href="{{ route('apparatus') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">table_view</i>
+                        <i class="material-icons opacity-10">science</i>
                     </div>
                     <span class="nav-link-text ms-1">Apparatus</span>
                 </a>
@@ -58,9 +58,18 @@
                 <a class="nav-link text-white {{ $activePage == 'chemicals' ? ' active bg-gradient-primary' : '' }} "
                     href="{{ route('chemicals')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">table_view</i>
+                        <i class="material-icons opacity-10">science</i>
                     </div>
                     <span class="nav-link-text ms-1">Chemicals</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'chemicals' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{ route('chemicals')}}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">history</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Return History</span>
                 </a>
             </li>
 <<<<<<< HEAD

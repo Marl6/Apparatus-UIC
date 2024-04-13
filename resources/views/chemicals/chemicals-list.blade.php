@@ -78,16 +78,17 @@
 
                                         <div class="row">
 
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label">Date Requested</label>
-                                                <input type="date" name="date_requested" class="form-control border border-2 p-2" value='{{ old('date_requested', auth()->user()->date_requested) }}' required>
-                                                @error('date_requested')
-                                            <p class='text-danger inputerror'>{{ $message }} </p>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Date Requested</label>
+                                            <input type="text" name="date_requested" class="form-control border border-2 p-2" value='{{ date("m/d/Y") }}' readonly required>
+                                            @error('date_requested')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
                                             @enderror
-                                            </div>
+                                        </div>
+
 
                                             <div class="mb-3 col-md-6">
-                                                <label class="form-label">date To Be Used</label>
+                                                <label class="form-label">Date To Be Used</label>
                                                 <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" value='{{ old('date_to_be_used', auth()->user()->date_to_be_used) }}' required>
                                                 @error('date_to_be_used')
                                             <p class='text-danger inputerror'>{{ $message }} </p>
@@ -120,11 +121,12 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Prepared By</label>
-                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" value='{{ old('prepared_by', auth()->user()->prepared_by) }}' required>
+                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" value='{{ old('prepared_by', auth()->user()->name) }}' readonly required>
                                                 @error('prepared_by')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
+
                                 </div>
                             </div>
                             <div class="modal-footer">
