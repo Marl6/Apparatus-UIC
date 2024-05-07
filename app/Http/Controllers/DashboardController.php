@@ -26,11 +26,25 @@ class DashboardController extends Controller
         $breakages=Breakages::get();
         $breakagesSum= count($breakages);
 
+
+        // Query to get count of borrowings per month
+        $borrowingsPerProgram = Apparatus::selectRaw('course, COUNT(*) as count')
+        ->groupBy('course')
+        ->get();
+
+    // Transforming the result into an associative array for easier use in the view
+        $borrowingsData = [];
+        foreach ($borrowingsPerProgram as $item) {
+            $borrowingsData[$item->course] = $item->count;
+        }
+
+
         $data=[
             'apparatus'=> $apparatussum,
             'chemicals'=> $chemicalsSum,
-            'breakages'=> $breakagesSum
+            'breakages'=> $breakagesSum,
+            'borrowingsData' => $borrowingsData,
         ];
-        return view('dashboard.index',$data );
+        return view('dashboard.index', $data);
     }
 }

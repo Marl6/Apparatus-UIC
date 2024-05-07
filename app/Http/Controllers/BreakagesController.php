@@ -11,23 +11,49 @@ class BreakagesController extends Controller
 {
     public function addBreakages(Request $request)
     {
+        // Generate a unique random requisition_id
+        $requisitionId = $this->generateUniqueRequisitionId();
+    
+        // Create a new Breakages instance
         $breakages = new Breakages;
+        
+        // Fill the Breakages model with request data
         $breakages->group_no = $request->group_no;
-        $breakages->requisition_id = $request->requisition_id;
+        $breakages->group_leader = $request->group_leader;
+        $breakages->requisition_id = $requisitionId;
         $breakages->quantity = $request->quantity;
         $breakages->amount = $request->amount;
         $breakages->datetime_paid = $request->datetime_paid;
         $breakages->statuscode = $request->statuscode;
+        
+        // Save the Breakages model to the database
         $breakages->save();
-
+    
+        // Redirect to the Breakages route
         return redirect()->route('Breakages');
     }
+    
+    private function generateUniqueRequisitionId()
+    {
+        // Generate a random requisition_id
+        $requisitionId = mt_rand(100000, 999999); // Adjust range as needed
+    
+        // Check if the requisition_id already exists in the database
+        while (Breakages::where('requisition_id', $requisitionId)->exists()) {
+            // If the requisition_id exists, generate a new one until unique
+            $requisitionId = mt_rand(100000, 999999); // Adjust range as needed
+        }
+    
+        return $requisitionId;
+    }
+    
 
     public function index(Request $request)
     {
         if($request->ajax()){
             # formerly: $breakages = Breakages::get()->all(); 
-            $breakages = Breakages::where('statuscode', 'unpaid')->get();                return Datatables::of($breakages)
+            $breakages = Breakages::where('statuscode', 'unpaid')->get();                
+            return Datatables::of($breakages)
                     ->addIndexColumn()
                     ->addColumn('action', function($breakages){
                         $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $breakages->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .
@@ -78,6 +104,7 @@ class BreakagesController extends Controller
     public function updateBreakages(Request $request){
         $breakages = Breakages::where('id', $request->input('id'))->update([
             'group_no' => $request->input('group_no'),
+            'group_leader' => $request->input('group_leader'),
             'requisition_id' => $request->input('requisition_id'),
             'quantity' => $request->input('quantity'),
             'amount' => $request->input('amount'),

@@ -17,6 +17,7 @@ class Breakages extends Model
 
     protected $fillable = [
         'group_no',
+        'group_leader',
         'requisition_id',
         'quantity',
         'amount',

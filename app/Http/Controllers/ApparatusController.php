@@ -24,6 +24,9 @@ class ApparatusController extends Controller
             $apparatus->time = $request->time;
             $apparatus->items = $request->items;
             $apparatus->quantity = $request->quantity;
+            $apparatus->borrow_status = $request->borrow_status;
+            $apparatus->prepared_by = $request->prepared_by;
+
             $apparatus->remarks = $request->remarks;
             $apparatus->save();
 
@@ -44,7 +47,7 @@ class ApparatusController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $apparatus = Apparatus::get()->all();
+            $apparatus = Apparatus::where('borrow_status', 'unreturned')->get();  
                 return Datatables::of($apparatus)
                     ->addIndexColumn()
                     ->addColumn('action', function($apparatus){
@@ -66,9 +69,13 @@ class ApparatusController extends Controller
         }
         $apparatus_inventory = DB::table('apparatusInventory')->pluck('apparatus_name', 'id')->toArray();
         $teachers = DB::table('teachers')->pluck('last_name', 'id')->toArray();
-
-        return view('apparatus.apparatus-list', ['teachers' => $teachers], ['apparatusInventory' => $apparatus_inventory]);
-        //return view('apparatus.apparatus-list');
+        $course_title = DB::table('courses')->pluck('course_title', 'id')->toArray();
+        return view('apparatus.apparatus-list', [
+            'teachers' => $teachers,
+            'apparatusInventory' => $apparatus_inventory,
+            'course_title' => $course_title
+            ]);
+                //return view('apparatus.apparatus-list');
     }
     public function deleteApparatus(Request $request)
     {
@@ -107,7 +114,9 @@ class ApparatusController extends Controller
             'time' => $request->input('time'),
             'items' => $request->input('items'),
             'quantity' => $request->input('quantity'),
+            'borrow_status' => $request->input('borrow_status'),
             'remarks' => $request->input('remarks'),
+            'prepared_by' => $request->input('prepared_by'),
           ]);
           return redirect()->back();
     }

@@ -50,11 +50,12 @@
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
                                             <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-1">group no</th>
+                                            <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-1">group leader</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">requisition id</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">amount</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">datetime paid</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">Status code</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">Status</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Action</th>
                                         </tr>
                                     </thead>
@@ -87,8 +88,16 @@
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Name of Group Leader</label>  
+                                                        <input type="text" name="group_leader" class="form-control border border-2 p-2" required>
+                                                        @error('group_leader')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
                                                         <label class="form-label">Requisition ID</label>
-                                                        <input type="number" name="requisition_id" class="form-control border border-2 p-2" required>
+                                                        <input type="number" name="requisition_id" class="form-control border border-2 p-2" readonly>
                                                         @error('requisition_id')
                                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                                         @enderror
@@ -96,7 +105,7 @@
 
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Quantity</label>
-                                                        <input type="number" name="quantity" class="form-control border border-2 p-2"  required>
+                                                        <input type="number" name="quantity" class="form-control border border-2 p-2"  required oninput="this.value = Math.abs(this.value)">
                                                         @error('quantity')
                                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                                         @enderror
@@ -119,8 +128,12 @@
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Status Code</label>
-                                                        <input type="text" name="statuscode" class="form-control border border-2 p-2"  required>
+                                                        <label class="form-label">Status</label>
+                                                        <select name="statuscode" class="form-select border border-2 p-2" required>
+                                                            <option value="unpaid">unpaid</option>
+                                                            <option value="paid">paid</option>
+                                                        </select>
+
                                                         @error('statuscode')
                                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                                         @enderror
@@ -162,6 +175,14 @@
                                                 </div>
 
                                                 <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Name of Group Leader</label>  
+                                                        <input type="text" name="group_leader" class="form-control border border-2 p-2" id="group_leader_edit" required>
+                                                        @error('group_leader')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                </div>
+
+                                                <div class="mb-3 col-md-6">
                                                     <label class="form-label">Requisition ID</label>
                                                     <input type="number" name="requisition_id" class="form-control border border-2 p-2"  id="requisition_id_edit" required>
                                                     @error('requisition_id')
@@ -172,7 +193,7 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Quantity</label>
-                                                    <input type="number" name="quantity" class="form-control border border-2 p-2"  id="quantity_edit" required>
+                                                    <input type="number" name="quantity" class="form-control border border-2 p-2"  id="quantity_edit" required oninput="this.value = Math.abs(this.value)">
                                                     @error('quantity')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
@@ -199,8 +220,8 @@
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Status Code</label>
                                                     <select name="statuscode" id="statuscode_edit" class="form-select border border-2 p-2" required>
-                                                        <option value="paid">Paid</option>
-                                                        <option value="unpaid">Unpaid</option>
+                                                        <option value="paid">paid</option>
+                                                        <option value="unpaid">unpaid</option>
                                                     </select>
                                                     @error('statuscode')
                                                         <p class='text-danger inputerror'>{{ $message }}</p>
@@ -234,6 +255,7 @@
                         columns: [
                             {data: 'id', name: 'id'},
                             {data: 'group_no', name: 'group_no'},
+                            {data: 'group_leader', name: 'group_leader'},
                             {data: 'requisition_id', name: 'requisition_id'},
                             {data: 'quantity', name: 'quantity'},
                             {data: 'amount', name: 'amount'},
@@ -260,6 +282,7 @@
                     //  DATA TABLE
                     let data = {
                         'group_no': form.get('group_no') ?? null,
+                        'group_leader': form.get('group_leader') ?? null,
                         'requisition_id': form.get('requisition_id')  ?? null,
                         'quantity': form.get('quantity')  ?? null,
                         'amount': form.get('amount')  ?? null,
@@ -322,6 +345,7 @@
                             console.log(response.data);
                             $('#id').val(id);
                             $('#group_no_edit').val(response.data.group_no);
+                            $('#group_leader_edit').val(response.data.group_leader);
                             $('#requisition_id_edit').val(response.data.requisition_id);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#amount_edit').val(response.data.amount);
@@ -339,6 +363,7 @@
                         success: function(response) {
                             console.log(response.data);
                             $('#group_no_edit').val(response.data.group_no);
+                            $('#group_leader_edit').val(response.data.group_leader);
                             $('#requisition_id_edit').val(response.data.requisition_id);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#amount_edit').val(response.data.amount);

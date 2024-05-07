@@ -11,7 +11,9 @@
     <script src="{{ asset('datatables/1.11.4/js/dataTables.bootstrap5.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('sweetalert2/dist/sweetalert2.min.css') }}">
     <script type="text/javascript" src="{{ asset('sweetalert2/dist/sweetalert2.min.js') }}"></script>
-@endsection
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @endsection
 
 @section('content')
     <x-navbars.sidebar activePage='dashboard'></x-navbars.sidebar>
@@ -30,7 +32,7 @@
 
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-lg mb-3 text-capitalize">Total of Apparatus Borrowing</p>
+                                <p class="text-lg mb-3 text-capitalize">Total Apparatus Borrowed</p>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -46,7 +48,7 @@
                                 <i class="text-xl mb-0 text-capitalize">{{ $breakages}}</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-lg mb-4 text-capitalize">Total of Breakages</p>
+                                <p class="text-lg mb-4 text-capitalize">Total Breakages</p>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -62,7 +64,7 @@
                                 <i class="text-xl mb-0 text-capitalize">{{$chemicals}}</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-lg mb-4 text-capitalize">Total of Chemicals Used</p>
+                                <p class="text-lg mb-4 text-capitalize">Chemicals Used</p>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -71,6 +73,27 @@
                     </div>
                 </div>
             </div>
+
+
+            {{-- CHARTs --}}
+            <!-- Spacer -->
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-lg-12 mb-4">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <h3 class="card-title mb-0">Borrowings per Program</h3>
+                        </div>
+                        <div class="card-body">
+                            <h3>asdfasd</h3>
+                            <canvas id="borrowingsChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- TABLE --}}
+            <hr class="my-4">
             <div class="row">
                 <div class="mt-4">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -88,7 +111,9 @@
             </div>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="apparatus" role="tabpanel" aria-labelledby="apparatus-tab">
-                    <h3>Apparatus</h3>
+                    <div class="card-header pb-0">
+                        <h3 class="card-title mb-0">Apparatus</h3>
+                    </div>
                     {{-- <table class="table table-apparatus" id="table-apparatus">
                         <thead>
                           <tr>
@@ -129,34 +154,51 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="breakages" role="tabpanel" aria-labelledby="breakages-tab">
-                    <h3>Breakages</h3>
-                    <table class="table table-breakages">
-                        <thead>
-                            <tr>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">ID</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Group_No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Requisition ID</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Quantity</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Amount</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Datetime_paid</th>
-                            {{-- <th scope="col">Statuscode</th> --}}
-                            </tr>
-                        </thead>
-                    </table>
+                    <div class="card-header pb-0">
+                        <h3 class="card-title mb-0">Breakages</h3>
+                    </div>
+                    <div class="col-lg-25 col-md-30 mb-md-5 mb-1">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                            <table id="table-breakages" class="table table-chemicals align-items-center mb-1">
+                                <thead>
+                                    <tr>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">id</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">group_no</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">group_leader</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">requisition_id</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">amount</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">datetime_paid</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">status</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="chemicals" role="tabpanel" aria-labelledby="chemicals-tab">
-                    <h3>Chemicals</h3>
-                    <table class="table table-chemicals">
-                        <thead>
-                            <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">date_requested</th>
-                            <th scope="col">date_to_be_used</th>
-                            <th scope="col">chemical_name</th>
-                            <th scope="col">quantity</th>
-                            </tr>
-                        </thead>
-                    </table>
+                    <div class="card-header pb-0">
+                        <h3 class="card-title mb-0">Chemicals</h3>
+                    </div>
+                    <div class="col-lg-25 col-md-30 mb-md-5 mb-1">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <table id="table-chemicals" class="table table-chemicals align-items-center mb-1">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">date_requested</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">date_to_be_used</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">chemical_name</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -189,20 +231,22 @@
                 ]
             });
 
-            $('.table-breakages').DataTable({
+            $('#table-breakages').DataTable({
                     processing: true,
                     serverSide: true,
                     ajax: "{{ route('Breakages') }}",
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'group_no', name: 'group_no'},
+                        {data: 'group_leader', name: 'group_leader'},
                         {data: 'requisition_id', name: 'requisition_id'},
                         {data: 'quantity', name: 'quantity'},
+                        {data: 'amount', name: 'amount'},
                         {data: 'datetime_paid', name: 'datetime_paid'},
                         {data: 'statuscode', name: 'statuscode'}
                     ]
             });
-            $('.table-chemicals').DataTable({
+            $('#table-chemicals').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('chemicals') }}",
@@ -219,5 +263,40 @@
         });
     </script>
 @endsection
-   
-   
+
+<script>
+    axios.get("{{ route('dashboard') }}")
+        .then(response => {
+            const data = response.data;
+
+            // Extract data
+            const labels = Object.keys(data.borrowingsData);
+            const dataValues = Object.values(data.borrowingsData);
+
+            // Create Chart
+            const ctx = document.getElementById('borrowingsChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Borrowings per Month',
+                        data: dataValues,
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching dashboard data:', error);
+        });
+</script>

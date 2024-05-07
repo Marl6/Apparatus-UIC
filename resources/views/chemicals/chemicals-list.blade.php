@@ -105,7 +105,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Quantity</label>
-                                                <input type="number" name="quantity" class="form-control border border-2 p-2" value='{{ old('quantity', auth()->user()->quantity) }}' required>
+                                                <input type="number" name="quantity" class="form-control border border-2 p-2" value='{{ old('quantity', auth()->user()->quantity) }}' required oninput="this.value = Math.abs(this.value)">
                                                 @error('quantity')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -181,7 +181,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Quantity</label>
-                                                <input type="number" name="quantity" class="form-control border border-2 p-2" id="quantity_edit" required>
+                                                <input type="number" name="quantity" class="form-control border border-2 p-2" id="quantity_edit" required oninput="this.value = Math.abs(this.value)">
                                                 @error('quantity')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror

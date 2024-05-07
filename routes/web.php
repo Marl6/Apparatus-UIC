@@ -7,6 +7,7 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\ApparatusController;
 use App\Http\Controllers\BreakagesController;
 use App\Http\Controllers\ChemicalsController;
+use App\Http\Controllers\ReturnHistoryController;
 use App\Http\Controllers\UserList;
 
 
@@ -80,6 +81,15 @@ Route::controller(ChemicalsController::class)->middleware(['auth', 'verified'])-
     Route::post('/chemicals/delete', 'deleteChemicals');
     Route::post('/chemicals/update', 'updateChemicals')->name('updateChemicals');
 });
+
+/**
+ * Return History Routes
+ */
+Route::controller(returnHistoryController::class)->middleware(['auth', 'verified'])->group(function() {
+    Route::get('/returnHistory', 'index')->name('returnHistory');
+});
+
+
 
 Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->group(function() {
     Route::get('/Dashboard', 'index')->name('Dashboard');

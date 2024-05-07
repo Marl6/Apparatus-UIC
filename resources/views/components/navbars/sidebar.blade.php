@@ -64,26 +64,14 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'chemicals' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('chemicals')}}">
+                <a class="nav-link text-white {{ $activePage == 'returnHistory' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{ route('returnHistory')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">history</i>
                     </div>
-                    <span class="nav-link-text ms-1">Return History</span>
+                    <span class="nav-link-text ms-1">Apparatus Return History</span>
                 </a>
             </li>
-<<<<<<< HEAD
-            {{-- <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'billing' ? ' active bg-gradient-primary' : '' }}  "
-                    href="#">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">receipt_long</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Billing</span>
-                </a>
-            </li> --}}
-=======
->>>>>>> 4aa3f620f88db01ece818bcb6199903e7770a4d8
         </ul>
     
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">

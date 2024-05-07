@@ -38,13 +38,15 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">subject</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">course_&_section</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">program_&_section</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">date_to_be_used</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">teacher</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">time</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">items</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">status</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">remarks</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">prepared by</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Action</th>
                                     </tr>
                                 </thead>
@@ -69,7 +71,7 @@
                                     <div class="row">
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
-                                                <label class="form-label">Subject</label>
+                                                <label class="form-label">Course</label>
                                                 <input type="text" name="subject" class="form-control border border-2 p-2" required>
                                                 @error('subject')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
@@ -77,18 +79,15 @@
                                             </div>
 
                                             <div class="mb-3 col-md-6">
-                                                <label class="form-label">Course</label>
+                                                <label class="form-label">Program</label>
                                                 <select name="course" class="form-select border border-2 p-2" required>
-                                                    <option value="">Select Course</option>
-                                                    <option value="BSCS">BSCS</option>
-                                                    <option value="BSIT">BSIT</option>
-                                                    <option value="BSIT">BSPH</option>
-                                                    <option value="BSIT">BSN</option>
-                                                    <option value="BSIT">BSMT</option>
-
+                                                    <option value="">Select a Program</option>
+                                                    @foreach($course_title as $id => $course)
+                                                        <option value="{{ $course }}">{{ $course }}</option>
+                                                    @endforeach
                                                 </select>
                                                 @error('course')
-                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                <p class='text-danger inputerror'>{{ $message }}</p>
                                                 @enderror
                                             </div>
 
@@ -121,8 +120,6 @@
                                                     <option value="G">G</option>
                                                     <option value="H">H</option>
                                                     <option value="I">I</option>
-
-
                                                 </select>
 
                                                 @error('section')
@@ -132,7 +129,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Date to be used</label>
-                                                <input type="text" name="date_to_be_used" class="form-control border border-2 p-2" value='{{ date("m/d/Y") }}'  required>
+                                                <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" value='<?php echo date("Y-m-d"); ?>'  required>
                                                 @error('date_to_be_used')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -140,7 +137,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Group No</label>
-                                                <input type="number" name="group_no" class="form-control border border-2 p-2" required>
+                                                <input type="number" name="group_no" class="form-control border border-2 p-2" required oninput="this.value = Math.abs(this.value)">
                                                 @error('group_no')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -162,15 +159,16 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Experiment No</label>
-                                                <input type="number" name="experiment_no" class="form-control border border-2 p-2" required>
+                                                <input type="number" name="experiment_no" class="form-control border border-2 p-2" min="1" required oninput="this.value = Math.abs(this.value)">
                                                 @error('experiment_no')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
 
+
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Time</label>
-                                                <input type="text" name="time" class="form-control border border-2 p-2" value='{{ date("h:i A", strtotime("now +8 hours")) }}' readonly required>                                                @error('time')
+                                                <input type="time" name="time" class="form-control border border-2 p-2" value='<?php echo date("H:i", strtotime("now +8 hours")); ?>' required>                                                @error('time')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
@@ -192,8 +190,19 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Quantity</label>
-                                                <input type="number" name="quantity" class="form-control border border-2 p-2"  required>
+                                                <input type="number" name="quantity" class="form-control border border-2 p-2" required min="1" oninput="this.value = Math.abs(this.value)">
                                                 @error('quantity')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Status</label>
+                                                <select name="borrow_status" class="form-select border border-2 p-2" readonly>
+                                                    <option value="unreturned">unreturned</option>
+                                                </select>
+
+                                                @error('borrow_status')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
@@ -202,6 +211,14 @@
                                                 <label class="form-label">Remarks</label>
                                                 <input type="text" name="remarks" class="form-control border border-2 p-2" required>
                                                 @error('remarks')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Prepared By</label>
+                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" value='{{ old('prepared_by', auth()->user()->name) }}' readonly required>
+                                                @error('prepared_by')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
                                             </div>
@@ -234,7 +251,7 @@
                                 <div class="row">
                                     <input type="hidden" name="id" class="form-control border border-2 p-2 " id="id" required>
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label">Subject</label>
+                                        <label class="form-label">Course</label>
                                         <input type="text" name="subject" class="form-control border border-2 p-2"  id="subject_edit" required>
                                         @error('subject')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
@@ -242,24 +259,47 @@
                                     </div>
 
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label">Course</label>
-                                        <input type="text" name="course" class="form-control border border-2 p-2" id="course_edit" required>
+                                        <label class="form-label">Program</label>
+                                        <select name="course" class="form-select border border-2 p-2" id="course_edit" required>
+                                        <option value=""></option>
+                                            @foreach($course_title as $id => $course)
+                                                <option value="{{ $course }}">{{ $course }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('course')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
                                     </div>
+                                
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Year </label>
-                                        <input type="text" name="year" class="form-control border border-2 p-2" id="year_edit" required>
+                                        <select name="year" class="form-select border border-2 p-2" id="year_edit" required>
+                                            <option value=""></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="4">5</option>
+                                        </select>
                                         @error('year')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
-                                    </div>
+                                    </div>  
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Section</label>
-                                        <input type="text" name="section" class="form-control border border-2 p-2" id="section_edit" required>
+                                        <select name="section" class="form-select border border-2 p-2" id="section_edit" required>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>                                              
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                        </select>
                                         @error('section')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -275,7 +315,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Group No</label>
-                                        <input type="text" name="group_no" class="form-control border border-2 p-2" id="group_no_edit" required>
+                                        <input type="number" name="group_no" class="form-control border border-2 p-2" id="group_no_edit" required min="0" oninput="this.value = Math.abs(this.value)">
                                         @error('group_no')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -291,7 +331,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Experiment No</label>
-                                        <input type="number" name="experiment_no" class="form-control border border-2 p-2" id="experiment_no_edit" required>
+                                        <input type="number" name="experiment_no" class="form-control border border-2 p-2" id="experiment_no_edit" required min="0" oninput="this.value = Math.abs(this.value)">
                                         @error('experiment_no')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -307,7 +347,12 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Items</label>
-                                        <input type="text" name="items" class="form-control border border-2 p-2" id="items_edit" required>
+                                        <select name="items" class="form-select border border-2 p-2" id="items_edit" required>
+                                        <option value="">Select Item</option>
+                                            @foreach($apparatusInventory as $id => $apparatus)
+                                                <option value="{{ $apparatus }}">{{ $apparatus }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('items')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
@@ -315,10 +360,22 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Quantity</label>
-                                        <input type="number" name="quantity" class="form-control border border-2 p-2" id="quantity_edit" required>
+                                        <input type="number" name="quantity" class="form-control border border-2 p-2" id="quantity_edit" required min="1" oninput="this.value = Math.abs(this.value)">
                                         @error('quantity')
-                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                        <p class='text-danger inputerror'>{{ $message }}</p>
                                         @enderror
+                                    </div>
+
+                                    <div class="mb-3 col-md-6">
+                                                <label class="form-label">Status</label>
+                                                <select name="borrow_status" class="form-select border border-2 p-2" id="borrow_status" required>
+                                                    <option value="unreturned">unreturned</option>
+                                                    <option value="returned">returned</option>
+                                                </select>
+
+                                                @error('borrow_status')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
                                     </div>
 
                                     <div class="mb-3 col-md-6">
@@ -327,6 +384,14 @@
                                         @error('remarks')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
+                                    </div>
+
+                                    <div class="mb-3 col-md-6">
+                                                <label class="form-label">Prepared By</label>
+                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" value='{{ old('prepared_by', auth()->user()->name) }}' readonly required>
+                                                @error('prepared_by')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
                                     </div>
 
                                 </div>
@@ -367,7 +432,9 @@
                             {data: 'time', name: 'time'},
                             {data: 'items', name: 'items'},
                             {data: 'quantity', name: 'quantity'},
+                            {data: 'borrow_status', name: 'borrow_status'},
                             {data: 'remarks', name: 'remarks'},
+                            {data: 'prepared_by', name: 'prepared_by'},                            
                             {data: 'action', name: 'action', orderable: false, searchable: false},
                         ]
                     });
@@ -400,7 +467,9 @@
                         'time': form.get('time')  ?? null,
                         'items': form.get('items')  ?? null,
                         'quantity': form.get('quantity')  ?? null,
-                        'remarks': form.get('remarks') ?? null
+                        'borrow_status': form.get('borrow_status')  ?? null,
+                        'remarks': form.get('remarks') ?? null,
+                        'prepared_by': form.get('prepared_by') ?? null
                     };
 
                     console.log(data.time);
@@ -467,7 +536,9 @@
                             $('#items_edit').val(response.data.items);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#remarks_edit').val(response.data.remarks);
-							$('#teacher_edit').val(response.data.teacher);
+                            $('#remarks_borrow_status_edit').val(response.data.borrow_status);
+                            $('#teacher_edit').val(response.data.teacher);
+                            $('#prepared_by_edit').val(response.data.prepared_by);
                           
                         }
                     });
@@ -490,7 +561,9 @@
                             $('#items_edit').val(response.data.items);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#remarks_edit').val(response.data.remarks);
+                            $('#remarks_borrow_status').val(response.data.borrow_status);
                             $('#teacher_edit').val(response.data.teacher);
+                            $('#prepared_by_edit').val(response.data.prepared_by);
                         }
 
                         });
@@ -522,6 +595,7 @@
                     })
                 }
         </script>
+
     @endsection
 
 
