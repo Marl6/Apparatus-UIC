@@ -10,9 +10,10 @@ use App\Models\Breakages;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('dashboard.index');
+        $data = $this->sum($request);
+        return view('dashboard.index', $data);
     }
 
     public function sum(Request $request)
@@ -45,6 +46,6 @@ class DashboardController extends Controller
             'breakages'=> $breakagesSum,
             'borrowingsData' => $borrowingsData,
         ];
-        return view('dashboard.index', $data);
+        return  $data;
     }
 }

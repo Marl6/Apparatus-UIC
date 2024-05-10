@@ -28,7 +28,8 @@ use App\Http\Controllers\UserList;
  */
 Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->group(function () {
     // Route::get('/dashboard', 'index')->name('dashboard');
-    Route::get('/dashboard','sum')->name('dashboard');
+    Route::get('/dashboard','index')->name('dashboard');
+    Route::get('/dashboard/sum','sum')->name('dashboardSum');
 });
 
 /**

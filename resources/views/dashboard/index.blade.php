@@ -85,7 +85,6 @@
                             <h3 class="card-title mb-0">Borrowings per Program</h3>
                         </div>
                         <div class="card-body">
-                            <h3>asdfasd</h3>
                             <canvas id="borrowingsChart" width="400" height="200"></canvas>
                         </div>
                     </div>
@@ -263,24 +262,33 @@
         });
     </script>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<script>
-    axios.get("{{ route('dashboard') }}")
+<script defer>
+   document.onreadystatechange = function () {
+    if (document.readyState == "interactive") {
+    console.log("{{ route('dashboard') }}");
+    axios.get("{{ route('dashboardSum') }}")
         .then(response => {
+            console.log('Response:', response);
             const data = response.data;
-
+            console.log(data);
             // Extract data
             const labels = Object.keys(data.borrowingsData);
             const dataValues = Object.values(data.borrowingsData);
+            console.log('Labels:', labels);
+            console.log('Data Values:', dataValues);
 
             // Create Chart
-            const ctx = document.getElementById('borrowingsChart').getContext('2d');
+            console.log('asdf')
+            console.log(document.getElementById('borrowingsChart'));
+            const ctx = document.getElementById('borrowingsChart');
             const myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Borrowings per Month',
+                        label: labels,
                         data: dataValues,
                         backgroundColor: 'rgba(255, 99, 132, 0.7)',
                         borderColor: 'rgba(255, 99, 132, 1)',
@@ -299,4 +307,6 @@
         .catch(error => {
             console.error('Error fetching dashboard data:', error);
         });
+    } 
+}
 </script>
