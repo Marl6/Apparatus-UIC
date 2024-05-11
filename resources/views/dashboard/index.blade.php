@@ -279,30 +279,34 @@
             console.log('Labels:', labels);
             console.log('Data Values:', dataValues);
 
-            // Create Chart
-            console.log('asdf')
-            console.log(document.getElementById('borrowingsChart'));
-            const ctx = document.getElementById('borrowingsChart');
-            const myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: labels,
-                        data: dataValues,
-                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+            // Define an array of colors
+        const colors = ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)', 'rgba(75, 192, 192, 0.7)', 'rgba(153, 102, 255, 0.7)']; // Add more colors as needed
+
+        // Create Chart
+        console.log('asdf')
+        console.log(document.getElementById('borrowingsChart'));
+        const ctx = document.getElementById('borrowingsChart');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Borrowings',
+                    data: dataValues,
+                    backgroundColor: colors, // Use the colors array here
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
-            });
+            }
+        });
+    
         })
         .catch(error => {
             console.error('Error fetching dashboard data:', error);
