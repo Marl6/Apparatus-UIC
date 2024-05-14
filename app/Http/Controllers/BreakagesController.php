@@ -12,7 +12,7 @@ class BreakagesController extends Controller
     public function addBreakages(Request $request)
     {
         // Generate a unique random requisition_id
-        $requisitionId = $this->generateUniqueRequisitionId();
+        //$requisitionId = $this->generateUniqueRequisitionId();
     
         // Create a new Breakages instance
         $breakages = new Breakages;
@@ -20,7 +20,8 @@ class BreakagesController extends Controller
         // Fill the Breakages model with request data
         $breakages->group_no = $request->group_no;
         $breakages->group_leader = $request->group_leader;
-        $breakages->requisition_id = $requisitionId;
+        $breakages->requisition_id = $request->requisition_id;
+        $breakages->apparatus_name = $request->apparatus_name;
         $breakages->quantity = $request->quantity;
         $breakages->amount = $request->amount;
         $breakages->datetime_paid = $request->datetime_paid;
@@ -74,7 +75,8 @@ class BreakagesController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('Breakages');
+        $apparatus_inventory = DB::table('apparatusInventory')->pluck('apparatus_name', 'id')->toArray();
+        return view('Breakages', ['apparatusInventory' => $apparatus_inventory]);
     }
     public function deleteBreakages(Request $request)
     {
@@ -106,6 +108,7 @@ class BreakagesController extends Controller
             'group_no' => $request->input('group_no'),
             'group_leader' => $request->input('group_leader'),
             'requisition_id' => $request->input('requisition_id'),
+            'apparatus_name' => $request->input('apparatus_name'),
             'quantity' => $request->input('quantity'),
             'amount' => $request->input('amount'),
             'datetime_paid' => $request->input('datetime_paid'),

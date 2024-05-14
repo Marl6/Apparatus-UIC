@@ -48,10 +48,11 @@
                                 <table id="data-table" class="table table align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
-                                            <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-1">group no</th>
-                                            <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-1">group leader</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">id</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">group no</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">group leader</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">requisition id</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">name of apparatus</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">quantity</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">amount</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">datetime paid</th>
@@ -97,14 +98,27 @@
 
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Requisition ID</label>
-                                                        <input type="number" name="requisition_id" class="form-control border border-2 p-2" readonly>
+                                                        <input type="number" name="requisition_id" class="form-control border border-2 p-2" required oninput="this.value = Math.abs(this.value)">
                                                         @error('requisition_id')
                                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                                         @enderror
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Quantity</label>
+                                                        <label class="form-label">Name of Apparatus</label>  
+                                                        <select type="items" name="apparatus_name" class="form-select border border-2 p-2" required>
+                                                        <option value="">Select Item</option>
+                                                            @foreach($apparatusInventory as $id => $apparatus_name)
+                                                                <option value="{{ $apparatus_name }}">{{ $apparatus_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('apparatus_name')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Quantity of Broken Apparatus</label>
                                                         <input type="number" name="quantity" class="form-control border border-2 p-2"  required oninput="this.value = Math.abs(this.value)">
                                                         @error('quantity')
                                                         <p class='text-danger inputerror'>{{ $message }} </p>
@@ -121,7 +135,7 @@
 
                                                      <div class="mb-3 col-md-6">
                                                         <label class="form-label">Datetime paid</label>
-                                                        <input type="date" name="datetime_paid" class="form-control border border-2 p-2" required>
+                                                        <input type="date" name="datetime_paid" class="form-control border border-2 p-2" value='<?php echo date("Y-m-d"); ?>' required>
                                                         @error('datetime_paid')
                                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                                         @enderror
@@ -184,16 +198,24 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Requisition ID</label>
-                                                    <input type="number" name="requisition_id" class="form-control border border-2 p-2"  id="requisition_id_edit" required>
+                                                    <input type="number" name="requisition_id" class="form-control border border-2 p-2"  id="requisition_id_edit" required oninput="this.value = Math.abs(this.value)">
                                                     @error('requisition_id')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
                                                 </div>
 
+                                                <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Name of Apparatus</label>  
+                                                        <input type="text" name="apparatus_name" class="form-control border border-2 p-2" id="apparatus_name_edit" required>
+                                                        @error('apparatus_name')
+                                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                                        @enderror
+                                                </div>
+
 
                                                 <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Quantity</label>
-                                                    <input type="number" name="quantity" class="form-control border border-2 p-2"  id="quantity_edit" required oninput="this.value = Math.abs(this.value)">
+                                                    <label class="form-label">Quantity of Broken Apparatus</label>
+                                                    <input type="number" name="quantity" class="form-control border border-2 p-2"  id="quantity_edit" required required min="0" oninput="this.value = Math.abs(this.value)">
                                                     @error('quantity')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror
@@ -257,6 +279,7 @@
                             {data: 'group_no', name: 'group_no'},
                             {data: 'group_leader', name: 'group_leader'},
                             {data: 'requisition_id', name: 'requisition_id'},
+                            {data: 'apparatus_name', name: 'apparatus_name'},
                             {data: 'quantity', name: 'quantity'},
                             {data: 'amount', name: 'amount'},
                             {data: 'datetime_paid', name: 'datetime_paid'},
@@ -284,6 +307,7 @@
                         'group_no': form.get('group_no') ?? null,
                         'group_leader': form.get('group_leader') ?? null,
                         'requisition_id': form.get('requisition_id')  ?? null,
+                        'apparatus_name': form.get('apparatus_name')  ?? null,
                         'quantity': form.get('quantity')  ?? null,
                         'amount': form.get('amount')  ?? null,
                         'created_at': form.get('created_at')  ?? null,
@@ -347,6 +371,7 @@
                             $('#group_no_edit').val(response.data.group_no);
                             $('#group_leader_edit').val(response.data.group_leader);
                             $('#requisition_id_edit').val(response.data.requisition_id);
+                            $('#apparatus_name_edit').val(response.data.apparatus_name);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#amount_edit').val(response.data.amount);
                             $('#datetime_paid_edit').val(response.data.datetime_paid);
@@ -365,6 +390,7 @@
                             $('#group_no_edit').val(response.data.group_no);
                             $('#group_leader_edit').val(response.data.group_leader);
                             $('#requisition_id_edit').val(response.data.requisition_id);
+                            $('#apparatus_name_edit').val(response.data.apparatus_name);
                             $('#quantity_edit').val(response.data.quantity);
                             $('#amount_edit').val(response.data.amount);
                             $('#datetime_paid_edit').val(response.data.datetime_paid);

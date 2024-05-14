@@ -197,7 +197,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Prepared By</label>
-                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" id="prepared_by_edit" required>
+                                                <input type="text" name="prepared_by" class="form-control border border-2 p-2" id="prepared_by_edit" required readonly>
                                                 @error('prepared_by')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
