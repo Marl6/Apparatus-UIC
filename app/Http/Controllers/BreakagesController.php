@@ -57,9 +57,12 @@ class BreakagesController extends Controller
             return Datatables::of($breakages)
                     ->addIndexColumn()
                     ->addColumn('action', function($breakages){
-                        $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $breakages->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .
-                               '<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $breakages->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
+                        $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $breakages->id .')"><i class="bi bi-pencil-square">EDIT</i></button>';
                             return $btn;
+                        //addColumn with delete button
+                        //$btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $breakages->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .
+                        //'<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $breakages->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
+                             //return $btn;    
 
                     })->editColumn('time', function($breakages){
                         $time = strtotime($breakages->time);

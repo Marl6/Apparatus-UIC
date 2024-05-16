@@ -45,18 +45,21 @@ class ApparatusController extends Controller
     }
 
     public function index(Request $request)
-    {
+    {   //
         if($request->ajax()){
             $apparatus = Apparatus::where('borrow_status', 'unreturned')->get();  
                 return Datatables::of($apparatus)
                     ->addIndexColumn()
                     ->addColumn('action', function($apparatus){
                         $apparatusObj = (object) $apparatus;
-                        $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $apparatus->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .
-                               '<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $apparatus->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
+                        $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $apparatus->id .')"><i class="bi bi-pencil-square">EDIT</i></button>';
                         return $btn;
-
+                    //addColumn with delete button
+                    //$btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $apparatus->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .
+                    //'<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $apparatus->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
+                    //return $btn;
                     })
+                    
                     ->editColumn('time', function($data){
                         $time = strtotime($data->time);
                         return date("g:i a", $time);

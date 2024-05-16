@@ -44,9 +44,12 @@ class ChemicalsController extends Controller
                 return Datatables::of($chemicals)
                     ->addIndexColumn()
                     ->addColumn('action', function($chemicals){
-                        $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $chemicals->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .
-                               '<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $chemicals->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
+                        $btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $chemicals->id .')"><i class="bi bi-pencil-square">EDIT</i></button>';
                         return $btn;
+                        //addColumn with delete button
+                        //$btn = '<button type="button" id="btnUpdate" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="updateBtn('. $chemicals->id .')"><i class="bi bi-pencil-square">EDIT</i></button>' . ' ' .
+                          //     '<button type="button" id="btnDelete" class="btn btn-success mb-0" onclick="deleteBtn('. $chemicals->id . ')"><i class="bi bi-pencil-square">DELETE</i></button>';
+                        //return $btn;
 
                     })->editColumn('time', function($data){
                         $time = strtotime($data->time);

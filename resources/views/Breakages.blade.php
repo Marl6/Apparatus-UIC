@@ -127,7 +127,7 @@
 
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Amount</label>
-                                                        <input type="text" name="amount" class="form-control border border-2 p-2" required>
+                                                        <input type="number" name="amount" class="form-control border border-2 p-2" required oninput="this.value = Math.abs(this.value)">
                                                         @error('amount')
                                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                                         @enderror
@@ -206,7 +206,11 @@
 
                                                 <div class="mb-3 col-md-6">
                                                         <label class="form-label">Name of Apparatus</label>  
-                                                        <input type="text" name="apparatus_name" class="form-control border border-2 p-2" id="apparatus_name_edit" required>
+                                                        <select  name="apparatus_name" class="form-select border border-2 p-2" id="apparatus_name_edit" required>
+                                                            @foreach($apparatusInventory as $id => $apparatus_name)
+                                                                <option value="{{ $apparatus_name }}">{{ $apparatus_name }}</option>
+                                                            @endforeach
+                                                        </select>
                                                         @error('apparatus_name')
                                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                                         @enderror
