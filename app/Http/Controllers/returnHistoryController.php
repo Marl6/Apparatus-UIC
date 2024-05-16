@@ -25,14 +25,10 @@ class returnHistoryController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        $apparatus_inventory = DB::table('apparatusInventory')->pluck('apparatus_name', 'id')->toArray();
-        $teachers = DB::table('teachers')->pluck('last_name', 'id')->toArray();
-        $course_title = DB::table('courses')->pluck('course_title', 'id')->toArray();
-        return view('returnHistory.returnHistory-list', [
-            'teachers' => $teachers,
-            'apparatusInventory' => $apparatus_inventory,
-            'course_title' => $course_title
-            ]);
-                //return view('apparatus.apparatus-list');
+        //$apparatus_inventory = DB::table('apparatusInventory')->pluck('apparatus_name', 'id')->toArray();
+        //$teachers = DB::table('teachers')->pluck('last_name', 'id')->toArray();
+        //$course_title = DB::table('courses')->pluck('course_title', 'id')->toArray();
+        return view('returnHistory.returnHistory-list');
+        //return view('apparatus.apparatus-list');
     }
 }
