@@ -24,7 +24,8 @@ class Breakages extends Model
         'datetime_paid',
         'datetime_added',
         'datetime_update',
-        'statuscode'
+        'statuscode',
+        'apparatus_name'
     ];
     
 

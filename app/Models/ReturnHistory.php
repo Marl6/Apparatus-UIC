@@ -20,10 +20,12 @@ class ReturnHistory extends Model
         'group_no',
         'teacher',
         'experiment_no',
+        'time',
         'items',
         'quantity',
+        'remarks',
         'borrow_status',
         'prepared_by',
-        'remarks'
+        'group_leader'
     ];
 }

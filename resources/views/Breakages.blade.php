@@ -32,7 +32,7 @@
                 <div class = "row">
                     <div class = "me-3 my-3 text-end">
                         <a class="btn bg-gradient-dark mb-0" href=""data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Breakages</a>
+                            <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Breakage</a>
                     </div>
 
                     <div class="card-body px-0 pb-2">
@@ -156,7 +156,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                <button type="submit" class="btn btn-primary">ADD ITEM</button>
                                             </div>
                                         </form>
                                     </div>
@@ -227,7 +227,7 @@
 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Amount</label>
-                                                    <input type="text" name="amount" class="form-control border border-2 p-2"  id="amount_edit" required>
+                                                    <input type="number" name="amount" class="form-control border border-2 p-2"  id="amount_edit" required oninput="this.value = Math.abs(this.value)">
                                                     @error('amount')
                                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                                     @enderror

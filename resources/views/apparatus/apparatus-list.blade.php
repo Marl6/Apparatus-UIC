@@ -21,7 +21,7 @@
             <div class = "row">
                 <div class = "me-3 my-3 text-end">
                     <a class="btn bg-gradient-dark mb-0" href="" data-bs-toggle="modal" data-bs-target="#addModal">
-                        <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Item</a>
+                        <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Borrow Apparatus</a>
                 </div>
 
                 {{-- <div class="card-body px-0 pb-2">
@@ -39,6 +39,7 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">id</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">subject</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">program_&_section</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-1">group_leader</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">date_to_be_used</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">teacher</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">time</th>
@@ -128,6 +129,14 @@
                                             </div>
 
                                             <div class="mb-3 col-md-6">
+                                                <label class="form-label">Group Leader</label>
+                                                <input type="text" name="group_leader" class="form-control border border-2 p-2" required>
+                                                @error('group_leader')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-md-6">
                                                 <label class="form-label">Date to be used</label>
                                                 <input type="date" name="date_to_be_used" class="form-control border border-2 p-2" value='<?php echo date("Y-m-d"); ?>'  required>
                                                 @error('date_to_be_used')
@@ -190,7 +199,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Quantity</label>
-                                                <input type="number" name="quantity" class="form-control border border-2 p-2" required min="1" oninput="this.value = Math.abs(this.value)">
+                                                <input type="number" name="quantity" class="form-control border border-2 p-2" required min="0" oninput="this.value = Math.abs(this.value)">
                                                 @error('quantity')
                                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                                 @enderror
@@ -303,6 +312,14 @@
                                         @error('section')
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
+                                    </div>
+
+                                    <div class="mb-3 col-md-6">
+                                                <label class="form-label">Group Leader</label>
+                                                <input type="text" name="group_leader" class="form-control border border-2 p-2" id="group_leader_edit" required>
+                                                @error('group_leader')
+                                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                                @enderror
                                     </div>
 
                                     <div class="mb-3 col-md-6">
@@ -427,6 +444,7 @@
                             {data: 'id', name: 'id'},
                             {data: 'subject', name: 'subject'},
                             {data: 'course', name: 'course'},
+                            {data: 'group_leader', name: 'group_leader'},                                                     
                             {data: 'date_to_be_used', name: 'date_to_be_used'},
                             {data: 'teacher', name: 'teacher'},
                             {data: 'time', name: 'time'},
@@ -434,7 +452,7 @@
                             {data: 'quantity', name: 'quantity'},
                             {data: 'borrow_status', name: 'borrow_status'},
                             {data: 'remarks', name: 'remarks'},
-                            {data: 'prepared_by', name: 'prepared_by'},                            
+                            {data: 'prepared_by', name: 'prepared_by'},   
                             {data: 'action', name: 'action', orderable: false, searchable: false},
                         ]
                     });
@@ -460,6 +478,7 @@
                         'course': form.get('course')  ?? null,
                         'year': form.get('year')  ?? null,
                         'section': form.get('section')  ?? null,
+                        'group_leader': form.get('group_leader') ?? null,
                         'date_to_be_used': form.get('date_to_be_used')  ?? null,
                         'group_no': form.get('group_no')  ?? null,
                         'teacher': form.get('teacher')  ?? null,
@@ -469,7 +488,7 @@
                         'quantity': form.get('quantity')  ?? null,
                         'borrow_status': form.get('borrow_status')  ?? null,
                         'remarks': form.get('remarks') ?? null,
-                        'prepared_by': form.get('prepared_by') ?? null
+                        'prepared_by': form.get('prepared_by') ?? null,
                     };
 
                     console.log(data.time);
@@ -529,6 +548,7 @@
                             $('#course_edit').val(response.data.course);
                             $('#year_edit').val(response.data.year);
                             $('#section_edit').val(response.data.section);
+                            $('#group_leader_edit').val(response.data.group_leader);
                             $('#date_to_be_used_edit').val(response.data.date_to_be_used);
                             $('#group_no_edit').val(response.data.group_no);
                             $('#experiment_no_edit').val(response.data.experiment_no);
@@ -538,8 +558,7 @@
                             $('#remarks_edit').val(response.data.remarks);
                             $('#remarks_borrow_status_edit').val(response.data.borrow_status);
                             $('#teacher_edit').val(response.data.teacher);
-                            $('#prepared_by_edit').val(response.data.prepared_by);
-                          
+                            $('#prepared_by_edit').val(response.data.prepared_by);                          
                         }
                     });
                 }
@@ -554,6 +573,7 @@
                             $('#course_edit').val(response.data.course);
                             $('#year_edit').val(response.data.year);
                             $('#section_edit').val(response.data.section);
+                            $('#group_leader_edit').val(response.data.group_leader);
                             $('#date_to_be_used_edit').val(response.data.date_to_be_used);
                             $('#group_no_edit').val(response.data.group_no);
                             $('#experiment_no_edit').val(response.data.experiment_no);

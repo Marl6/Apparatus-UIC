@@ -32,7 +32,7 @@
                 <div class = "row">
                     <div class = "me-3 my-3 text-end">
                         <a class="btn bg-gradient-dark mb-0" href="" data-bs-toggle="modal" data-bs-target="#addModal">
-                            <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Chemicals</a>
+                            <i class="material-icons text-sm">add</i>&nbsp;&nbsp;Borrow Chemical</a>
                     </div>
 
                     <div class="card-body px-0 pb-2">

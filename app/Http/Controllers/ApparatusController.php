@@ -17,6 +17,7 @@ class ApparatusController extends Controller
             $apparatus->course = $request->course;
             $apparatus->year = $request->year;
             $apparatus->section = $request->section;
+            $apparatus->group_leader = $request->group_leader;
             $apparatus->date_to_be_used = $request->date_to_be_used;
             $apparatus->group_no = $request->group_no;
             $apparatus->teacher = $request->teacher;
@@ -120,6 +121,7 @@ class ApparatusController extends Controller
             'borrow_status' => $request->input('borrow_status'),
             'remarks' => $request->input('remarks'),
             'prepared_by' => $request->input('prepared_by'),
+            'group_leader' => $request->input('group_leader'),
           ]);
           return redirect()->back();
     }

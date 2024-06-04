@@ -25,7 +25,10 @@ class Apparatus extends Model
         'time',
         'items',
         'quantity',
-        'remarks'
+        'remarks',
+        'borrow_status',
+        'prepared_by',
+        'group_leader'
 
     ];
 }
